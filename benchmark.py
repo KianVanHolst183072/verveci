@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[4]:
+# In[11]:
 
 
 import streamlit as st
@@ -14,10 +14,46 @@ import pandas as pd
 df = pd.read_csv("titanic.csv")
 
 
-# In[7]:
+# In[18]:
 
 
-col1, col2, col3 = st.columns([2, 3, 2])
-col1.markdown("# Welcome to my app!")
-col2.markdown(" This is a datadriven application...")
+st.title("Benchmark")
+
+
+# In[21]:
+
+
+section_1 = (
+st.header("Competency 1"),
+st.markdown("This will be the content of section 1")
+)
+
+
+# In[19]:
+
+
+section_2 = (
+st.header("Competency 2"),
+st.markdown("This will be the content of section 2")
+)
+
+
+# In[22]:
+
+
+current_page = section_1
+
+
+# In[23]:
+
+
+current_page
+
+
+# In[25]:
+
+
+if st.button('Next page'):
+    current_page = section_2
+    current_page
 
