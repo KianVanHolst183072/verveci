@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[114]:
+# In[124]:
 
 
 import streamlit as st
@@ -10,43 +10,43 @@ import pandas as pd
 import numpy as np
 
 
-# In[115]:
+# In[125]:
 
 
 df = pd.read_csv("titanic.csv")
 
 
-# In[116]:
+# In[126]:
 
 
 del df['Cabin']
 
 
-# In[117]:
+# In[127]:
 
 
 df = df.dropna()
 
 
-# In[118]:
+# In[128]:
 
 
 df['Age'] = df['Age'].astype(int)
 
 
-# In[119]:
+# In[129]:
 
 
 st.title("Results")
 
 
-# In[120]:
+# In[130]:
 
 
 user_input = df.iloc[10]
 
 
-# In[121]:
+# In[131]:
 
 
 tab1, tab2, tab3 = st.tabs(["Demographics", "Dog", "Owl"])
