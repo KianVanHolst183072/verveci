@@ -57,8 +57,8 @@ with tab1:
    with st.container():
       col1, col2, col3 = st.columns([2,3,1])
       with col1:
-         st.subheader("Passenger name:", user_input[3])
-         st.subheader("Passenger age:", str(user_input[5]))
+         st.subheader(f"Passenger name: {user_input[3]}")
+         st.subheader(f"Passenger age: {user_input[5]}")
          st.subheader(f"Passenger sex: {user_input[1]}")
       with col2:
          st.text("Data")
