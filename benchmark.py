@@ -1,67 +1,53 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[86]:
+# In[114]:
 
 
 import streamlit as st
+import plotly.figure_factory as ff
 import pandas as pd
 import numpy as np
 
 
-# In[87]:
+# In[115]:
 
 
 df = pd.read_csv("titanic.csv")
 
 
-# In[88]:
+# In[116]:
 
 
 del df['Cabin']
 
 
-# In[89]:
+# In[117]:
 
 
 df = df.dropna()
 
 
-# In[90]:
+# In[118]:
 
 
 df['Age'] = df['Age'].astype(int)
 
 
-# In[91]:
+# In[119]:
 
 
 st.title("Results")
 
 
-# In[92]:
+# In[120]:
 
 
 user_input = df.iloc[10]
 
 
-# In[93]:
+# In[121]:
 
-
-df.describe()
-
-
-# In[94]:
-
-
-user_input
-
-
-# In[95]:
-
-
-import streamlit as st
-import plotly.figure_factory as ff
 
 tab1, tab2, tab3 = st.tabs(["Demographics", "Dog", "Owl"])
 
