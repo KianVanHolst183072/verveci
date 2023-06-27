@@ -48,16 +48,16 @@
             </div>
         <div>
             <h3>Disclaimer</h3>
-            <p style="text-align: center;margin: 0px 50px 0px 50px; font-size: 150%;">
-                Deze benchmark tool is ontwikkeld door een onderzoeksgroep onderdeel van Breda University of Applied Sciences.
-                Voorafgaand van het ontwikkelen van deze tool is een screening gedaan over verschillende branches binnen de creatieve industrie.
+            <p style="text-align: center;margin: 0px 50px 0px 50px;">
+                Deze benchmark tool is ontwikkeld door een onderzoeksgroep onderdeel van Breda University of Applied Sciences.<br>
+                Voorafgaand van het ontwikkelen van deze tool is een screening gedaan over verschillende branches binnen de creatieve industrie.<br>
                 Vanuit deze screening is een database ontwikkeld waar u zich mee kunt vergelijken.<br><br>
                 De antwoorden die u verstrekt in deze screening zijn uitsluitend bedoeld voor onderzoeksdoeleinden en de ontwikkeling van nieuwe instrumenten.
                 Ze worden verzameld om inzichten te verkrijgen en trends te analyseren binnen de creatieve industrie. De verzamelde gegevens zullen strikt vertrouwelijk worden behandeld.
                 Toegang tot de antwoorden en resultaten van deze screening is beperkt tot geautoriseerde personen die betrokken zijn bij het onderzoeks- en ontwikkelingsproces.
                 <br><br>
                 Uw deelname aan deze screening is volledig vrijwillig. U kunt op elk gewenst moment stoppen met het invullen van de vragenlijst zonder enige verplichting of negatieve gevolgen.
-                Door de screening te starten, stemt u ermee in dat u op de hoogte bent gebracht van de bovengenoemde punten en dat u begrijpt en instemt met het gebruik van uw gegevens voor onderzoeksdoeleinden.
+                Door de screening te starten, stemt u ermee in dat u op de hoogte bent gebracht van de bovengenoemde punten en dat u begrijpt en instemt met het gebruik van uw gegevens voor onderzoeks- en ontwikkelingsdoeleinden.
                 Als u vragen of opmerkingen heeft over deze disclaimer, kunt u contact met ons opnemen via de aangegeven contactgegevens.
             </p>
         </div>
@@ -620,10 +620,7 @@
                           
                     </div>
                     <div class="form-group">
-                        <input type="radio" id="management" name="role" value="own">
-                        <label style="margin: 0px 5px 0px 5px;" for="owner">Eigenaar</label>
-
-                        <input type="radio" id="employee" name="role" value="man">
+                        <input type="radio" id="management" name="role" value="man">
                         <label style="margin: 0px 5px 0px 5px;" for="management">Management</label>
 
                         <input type="radio" id="employee" name="role" value="emp">
@@ -705,11 +702,7 @@
                     <div class="col">
                         <h4>Aanbevolen ontwikkel instrumenten</h4>
                         <p>
-                            Op basis van uw behaalde resultaten, bieden wij de volgende tools aan om uw veerkracht binnen het bedrijf te versterken. 
-                            Onze tools zijn zorgvuldig samengesteld op basis van de inzichten die we hebben verkregen uit een eerder onderzoek.
-                            Met deze tools kunt u proactief werken aan het versterken van de veerkracht binnen uw organisatie. 
-                            We hopen dat deze tools u zullen helpen om uw organisatie naar nieuwe hoogten te brengen en een veerkrachtige en succesvolle bedrijfscultuur te bevorderen.
-
+                            Op basis van uw resultaten, bieden wij de volgende tools aan om uw veerkracht binnen het bedrijf te versterken.
                         </p>
                     </div>
                 </div>
@@ -837,7 +830,6 @@
             $(".page").eq(currentPage).addClass("active"); // add active class to new current page
             $(".page.active").show();
             $(".page:not(.active)").hide();
-
             
             updateScorebars();
         }else{
@@ -860,7 +852,6 @@
             let bedrijfnaam = document.getElementById('bedrijfnaam');
             bedrijfnaam.innerHTML = bedrijfInput.value;
 
-            updateScorebars();
 
             progressMade.style.maxWidth = `100%`;
 
@@ -890,7 +881,7 @@
             window['total' + pageId] -=$(this).parent().find('.selected').data('value');
             $(this).parent().find('.selected').removeClass('selected');
         }
-        progress = ($('.selected').length/45)*100
+        progress = ($('.selected').length/41)*100
         progressMade.style.maxWidth = `${progress}%`;
 
         $(this).addClass('selected');
@@ -915,8 +906,8 @@ function showButtons() {
 }
 // RESULTAAT -> SCOREBARS
 function updateScorebars() {
-    const scores = [avgtotal, avgp1, avgp2, avgp3, avgp4, avgp5, avgp6];
-    const scoresexcl = [avgp1, avgp2, avgp3, avgp4, avgp5, avgp6];
+    const scores = [avgp1, avgp2, avgp3, avgp4, avgp5, avgp6];
+    const scoresincl = [avgtotal, avg1, avgp2, avgp3, avgp4, avgp5, avgp6];
     const filmarray = [25, 75, 50, 30, 85, 50, 35]
     const NLarray = [30, 60, 59, 64, 74, 23, 56]
     const scorebars = document.querySelectorAll('.scorebarfill');
@@ -928,12 +919,12 @@ function updateScorebars() {
 
 
     scorebars.forEach((scorebar, index) => {
-        const value = scores[index];
+        const value = scoresincl[index];
         scorebar.style.width = `${value}%`;
     })
     
     scoretext.forEach((scoretext, index) => {
-        const value = scores[index];
+        const value = scoresincl[index];
         scoretext.innerHTML= `${value}`; 
     })
 
@@ -959,18 +950,18 @@ function updateScorebars() {
         scoretextNL.innerHTML= `${value}`; 
     })
 
-    const lowest = getLowestIndices(scoresexcl, 3);
+    const lowest = getLowestIndices(scores, 3);
     const searchResult = searchLowestIndicesValues(lowest, instruments)
 
 }
 
 function getLowestValues(scores) {
-  const sortedScores = scoresexcl.slice().sort((a, b) => a - b);
+  const sortedScores = scores.slice().sort((a, b) => a - b);
   const lowestValues = sortedScores.slice(0, 3);
   const indices = [];
   
-  for (let i = 0; i < scoresexcl.length; i++) {
-    if (lowestValues.includes(scoresexcl[i])) {
+  for (let i = 0; i < scores.length; i++) {
+    if (lowestValues.includes(scores[i])) {
       indices.push(i);
     }
   }
