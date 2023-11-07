@@ -6,36 +6,19 @@
   <title>Verveci</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./css/style.css">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"
   integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
   crossorigin="anonymous"></script>
   
-  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-database.js"></script>
+  <script type="module" src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js"></script>
+  <script type="module" src="https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js"></script>
   
-  <script src="script.js"></script>
+  
+  <script src="./js/script.js" type="module"></script>
 </head>
 
 <body>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <br>
-    <h2 style="text-align: center;">Verveci application [DEMO]</h2>
-
     <div class="progress" style="justify-content: flex-start;">
         <div class="progressmade">
         </div>
@@ -53,13 +36,12 @@
                 Voorafgaand van het ontwikkelen van deze tool is een screening gedaan over verschillende branches binnen de creatieve industrie.
                 Vanuit deze screening is een database ontwikkeld waar u zich mee kunt vergelijken.<br><br>
                 De antwoorden die u verstrekt in deze screening zijn uitsluitend bedoeld voor onderzoeksdoeleinden en de ontwikkeling van nieuwe instrumenten.
-                Ze worden verzameld om inzichten te verkrijgen en trends te analyseren binnen de creatieve industrie. De verzamelde gegevens zullen strikt vertrouwelijk worden behandeld.
-                Toegang tot de antwoorden en resultaten van deze screening is beperkt tot geautoriseerde personen die betrokken zijn bij het onderzoeks- en ontwikkelingsproces.
+                Ze worden verzameld om inzichten te verkrijgen en trends te analyseren binnen de creatieve industrie. De verzamelde (persoons)gegevens zullen strikt vertrouwelijk worden behandeld en worden niet aan derden verstrekt.
+                Toegang tot de antwoorden en resultaten van deze screening is beperkt tot geautoriseerde personen die betrokken zijn bij het onderzoeks- en ontwikkelingsproces. Deze gegevens worden opgeslagen in een database.
                 <br><br>
                 Uw deelname aan deze screening is volledig vrijwillig. U kunt op elk gewenst moment stoppen met het invullen van de vragenlijst zonder enige verplichting of negatieve gevolgen.
-                Door de screening te starten, stemt u ermee in dat u op de hoogte bent gebracht van de bovengenoemde punten en dat u begrijpt en instemt met het gebruik van uw gegevens voor onderzoeksdoeleinden.
-                Als u vragen of opmerkingen heeft over deze disclaimer, kunt u contact met ons opnemen via de aangegeven contactgegevens.
-            </p>
+                Door de screening te starten, bevestigt u dat u op de hoogte bent gebracht van de bovengenoemde punten en geeft u toestemming voor het verwerken van uw persoonsgegevens voor onderzoeksdoeleinden.
+                Als u vragen of opmerkingen heeft over de verwerking van uw gegevens in het kader van dit onderzoek, kunt u contact met ons opnemen via de aangegeven contactgegevens.            </p>
         </div>
 
             <div class="row bottom-app" style="justify-content: flex-end;">
@@ -191,6 +173,7 @@
                 <button id="nextBtn" class="button volgende">Volgende</button>
             </div>
         </div>
+
         <div class="page page2">
             <div class="row top-app">
                 <h2><img id="logo" src="./images/logo.png">| Kenmerken team</h2>
@@ -249,6 +232,20 @@
                         <div class="answer" name="q25" data-value="3">Enigzins eens</div>
                         <div class="answer" name="q25" data-value="4">Mee eens</div>
                     </div>
+                </form>
+            </div>
+            <div class="row bottom-app">
+                <button id="backBtn"class="button terug">Terug</button>
+                <button id="nextBtn" class="button volgende">Volgende</button>
+            </div>
+        </div>
+
+        <div class="page page2">
+            <div class="row top-app">
+                <h2><img id="logo" src="./images/logo.png">| Kenmerken team</h2>
+            </div>
+            <div class="row body-app">
+                <form id="p2">
                     <div class="question">
                         <h3>Mijn team bekijkt het leven altijd van de zonnige kant.</h3>
                     </div>
@@ -411,6 +408,20 @@
                         <div class="answer" name="q45" data-value="3">Enigzins eens</div>
                         <div class="answer" name="q45" data-value="4">Mee eens</div>
                     </div>
+                </form>
+            </div>
+            <div class="row bottom-app">
+                <button id="backBtn"class="button terug">Terug</button>
+                <button id="nextBtn" class="button volgende">Volgende</button>
+            </div>
+        </div>
+
+                <div class="page page4">
+                    <div class="row top-app">
+                        <h2><img id="logo" src="./images/logo.png">| Middelen management</h2>
+                    </div>
+                    <div class="row body-app">
+                        <form id="p4">
                     <div class="question">
                         <h3>Mijn organisatie spreidt risico's door portefeuillespreiding.</h3>
                     </div>
@@ -590,7 +601,7 @@
                 <form>
                     <div class="form-group">
                       <label id="label" for="exampleInputEmail1">Naam</label>
-                      <input type="naam" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Uw naam">
+                      <input type="naam" class="form-control" id="naam" aria-describedby="emailHelp" placeholder="Uw naam">
                     </div>
                     <div class="form-group">
                         <label id="label" for="exampleInputEmail1">E-mail</label>
@@ -617,16 +628,15 @@
                         <option value="12">Stage performances</option>
                         <option value="13">Visual arts</option>
                         </select>
-                          
                     </div>
                     <div class="form-group">
-                        <input type="radio" id="management" name="role" value="own">
+                        <input type="radio" id="management" name="functie" value="own">
                         <label style="margin: 0px 5px 0px 5px;" for="owner">Eigenaar</label>
 
-                        <input type="radio" id="employee" name="role" value="man">
+                        <input type="radio" id="employee" name="functie" value="man">
                         <label style="margin: 0px 5px 0px 5px;" for="management">Management</label>
 
-                        <input type="radio" id="employee" name="role" value="emp">
+                        <input type="radio" id="employee" name="functie" value="emp">
                         <label style="margin: 0px 5px 0px 5px;" for="employee">Medewerker</label>
                     </div>
 
@@ -755,30 +765,115 @@
         </div>        
     </div>
 </body>
-
 <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-  
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyACzc4wTKVuYXssv30ykUwf4KLs8uys7Ow",
-      authDomain: "verveci-demo.firebaseapp.com",
-      projectId: "verveci-demo",
-      storageBucket: "verveci-demo.appspot.com",
-      messagingSenderId: "956385268653",
-      appId: "1:956385268653:web:ae0c7f2179a162b6c24724",
-      measurementId: "G-7W42T5PKE8"
-    };
-  
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-  </script>
+    
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js';
+import { getDatabase, ref, set } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js';
+
+const firebaseConfig = {
+    apiKey: "AIzaSyACzc4wTKVuYXssv30ykUwf4KLs8uys7Ow",
+    authDomain: "verveci-demo.firebaseapp.com",
+    databaseURL: "https://verveci-demo-default-rtdb.europe-west1.firebasedatabase.app/",
+    projectId: "verveci-demo",
+    storageBucket: "verveci-demo.appspot.com",
+    messagingSenderId: "956385268653",
+    appId: "1:956385268653:web:ae0c7f2179a162b6c24724"
+  };
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase();
+
+
+// Function to generate a unique user ID (you need to implement this)
+function generateUniqueUserId() {
+  // Implement your logic here to generate a unique user ID
+  // This can be a combination of letters, numbers, or any format you prefer
+  // For simplicity, you can use a timestamp-based ID as an example
+  var timestamp = Date.now();
+  return 'user_' + timestamp;
+}
+
+// Function to store data
+function storeData() {
+  var userId = generateUniqueUserId(); // Generate a unique user ID
+  var selectedAnswers = document.querySelectorAll('.answer.selected');
+  var formData = {}; // Initialize an object to store the data
+
+  // Iterate through selected answers and store 'data-value' under 'name'
+  selectedAnswers.forEach(function(answerElement) {
+    var nodeName = answerElement.getAttribute('name');
+    var answerText = answerElement.getAttribute('data-value');
+
+    // Create or update the formData object with the data
+    if (!formData[nodeName]) {
+      formData[nodeName] = {}; // Create a new object for the nodeName if it doesn't exist
+    }
+    formData[nodeName] = parseFloat(answerText);
+  });
+
+  // Get form input values
+  var naam = document.getElementById('naam').value;
+  var email = document.getElementById('exampleInputEmail1').value;
+  var bedrijf = document.getElementById('bedrijf').value;
+  var branch = document.getElementById('selectBranch').value;
+  var functie = document.querySelector('input[name="functie"]:checked').value;
+
+  // Add form data to the formData object
+  formData['naam'] = naam;
+  formData['email'] = email;
+  formData['bedrijf'] = bedrijf;
+  formData['branch'] = branch;
+  formData['functie'] = functie;
+
+  // Reference to the node corresponding to the user
+  var reference = ref(db, 'test_data/users/' + userId);
+
+  // Store the combined form data and selected answers under the user's node
+  set(reference, formData, function(error) {
+    if (error) {
+      console.error("Error storing data:", error);
+    } else {
+      console.log("Data stored successfully under user ID:", userId);
+    }
+  });
+}
+
+// Add a submit event listener to the form
+document.addEventListener('DOMContentLoaded', function() {
+  var form = document.querySelector('form');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent the default form submission behavior
+    storeData(); // Call the function to store the data in Firebase
+  });
+});
+
+// FINAL SUBMIT KNOP  
+$('#finalSubmitBtn').on('click', function(){
+        if($('.selected').length === 41){
+
+
+            $(".page").eq(currentPage).removeClass("active"); // remove active class from current page
+            currentPage = currentPage + 1; // move to next page
+            $(".page").eq(currentPage).addClass("active"); // add active class to new current page
+            $(".page.active").show();
+            $(".page:not(.active)").hide();
+
+            const bedrijfInput = document.getElementById("bedrijf");
+            let bedrijfnaam = document.getElementById('bedrijfnaam');
+            bedrijfnaam.innerHTML = bedrijfInput.value;
+
+            updateScorebars();
+
+            progressMade.style.maxWidth = `100%`;
+
+            storeData();
+            
+        }else{
+            message = 'Beantwoord alstublieft alle vragen voor uw analyse';
+            alert(message);
+        }
+
+    })
+</script>
 
 <script type="text/javascript">
     var questions = $(".question").length;
@@ -802,8 +897,6 @@
     $(".page.active").show();
     $(".page:not(.active)").hide();
 
-
-
 // BUTTONS
 // TERUG KNOP
     $(".terug").on("click", () => {
@@ -814,7 +907,7 @@
         $(".page:not(.active)").hide();
     });
 // VOLGENDE KNOP
-    $(".volgende").on("click", () => {
+$(".volgende").on("click", () => {
         $(".page").eq(currentPage).removeClass("active"); // remove active class from current page
         currentPage++; // move to next page
         $(".page").eq(currentPage).addClass("active"); // add active class to new current page
@@ -845,31 +938,7 @@
             alert(message);
         }
     })
-// FINAL SUBMIT KNOP  
-    $('#finalSubmitBtn').on('click', function(){
-        if($('.selected').length === 41){
 
-
-            $(".page").eq(currentPage).removeClass("active"); // remove active class from current page
-            currentPage = currentPage + 1; // move to next page
-            $(".page").eq(currentPage).addClass("active"); // add active class to new current page
-            $(".page.active").show();
-            $(".page:not(.active)").hide();
-
-            const bedrijfInput = document.getElementById("bedrijf");
-            let bedrijfnaam = document.getElementById('bedrijfnaam');
-            bedrijfnaam.innerHTML = bedrijfInput.value;
-
-            updateScorebars();
-
-            progressMade.style.maxWidth = `100%`;
-
-
-        }else{
-            message = 'Beantwoord alstublieft alle vragen voor uw analyse';
-            alert(message);
-        }
-    })
 // DOWNLOAD KNOP
     $('#downloadBtn').on('click', function(){
         $(".page").eq(currentPage + 1).addClass("active"); // add active class to new current page
@@ -899,6 +968,10 @@
 
 // FUNCTIES
 const buttons = document.getElementsByClassName("button");
+
+// Function to generate unique user ID
+
+
 
 // Function to hide all buttons
 function hideButtons() {
