@@ -11,7 +11,7 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"
   integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
   crossorigin="anonymous"></script>
-  <script src="/js/html2pdf.js"></script>
+  
   <script type="module" src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js"></script>
   <script type="module" src="https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js"></script>
   
@@ -31,7 +31,7 @@
                 <h2><img id="logo" src="./images/logo.png">| Veerkracht benchmark tool</h2>
             </div>
         <div>
-            <h3>Disclaimer</h3>
+            <h3>Disclaimer ENGLISH</h3>
             <p style="text-align: center;margin: 0px 50px 0px 50px; font-size: 150%;">
                 Deze benchmark tool is ontwikkeld door een onderzoeksgroep onderdeel van Breda University of Applied Sciences.
                 Voorafgaand van het ontwikkelen van deze tool is een screening gedaan over verschillende branches binnen de creatieve industrie.
@@ -46,7 +46,7 @@
         </div>
 
             <div class="row bottom-app" >
-                <button id="engBtn" class="button">English</button>
+                <button id="nlBtn" class="button">Dutch</button>
                 <button style="justify-content: flex-end;" id="nextBtn" class="button volgende">Akkoord</button>
             </div>
         </div>
@@ -650,7 +650,7 @@
             </div>
         </div>
 
-        <div class="page page8" id="export-container">
+        <div class="page page8">
             <div class="row top-app">
                 <h2><img id="logo" src="./images/logo.png">| Uw resultaat</h2>
             </div>
@@ -685,9 +685,9 @@
                                 <span class="info-text">Hier worden zaken als duidelijke taakverdeling, briefings, normen, checklist benoemd.</span>
                                 </button>
                                 Team coordinatie en planning</li>
-                            <li><div class="scorebar"><div class="scorebarfill"></div></div><p id="score">30</p></li>
-                            <li><div class="scorebar"><div class="scorebarfillbr"></div></div><p id="scorebr">30</p></li>
-                            <li><div class="scorebar"><div class="scorebarfillnl"></div></div><p id="scorenl">30</p></li>
+                            <li><div class="scorebar"><div class="scorebarfill"></div></div><p id="score"></p></li>
+                            <li><div class="scorebar"><div class="scorebarfillbr"></div></div><p id="scorebr"></p></li>
+                            <li><div class="scorebar"><div class="scorebarfillnl"></div></div><p id="scorenl"></p></li>
                             <li><button class="info-button">
                                 <i class="fa fa-info-circle"></i>
                                 <span class="info-text">Hier worden onder andere zicht op concurrentie, schaalbaarheid, korte terugverdientijd en het bouwen van allianties met sterke partners benoemd.</span>
@@ -788,8 +788,8 @@
                 </div>
             </div>
             <div class="row bottom-app">
-                <button id="downloaBtn" class="button">Download</button>
-                <button class="button" onclick="window.open('https://edubuas.sharepoint.com/sites/VerVeCi-Research/SitePages/Ontwikkelen.aspx')">Ontwikkel</button>
+                <button id="downloadBtn" class="button">Download</button>
+                <button class="button" onclick="takeScreenshot()">Print</button>
             </div>
         </div>        
     </div>
@@ -798,7 +798,7 @@
     
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js';
 import { getDatabase, ref, set } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js';
-const jsPDF = require("jspdf");
+
 const firebaseConfig = {
     apiKey: "AIzaSyACzc4wTKVuYXssv30ykUwf4KLs8uys7Ow",
     authDomain: "verveci-demo.firebaseapp.com",
@@ -875,15 +875,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-
-// ENGLISH BUTTON
-const button = document.getElementById("engBtn");
-button.addEventListener("click", async () => {
-  const response = await fetch("index_eng.html");
-  const html = await response.text();
-  document.body.innerHTML = html;
-});
-
 // FINAL SUBMIT KNOP  
 $('#finalSubmitBtn').on('click', function(){
         if($('.selected').length === 41){
@@ -911,8 +902,7 @@ $('#finalSubmitBtn').on('click', function(){
         }
 
     })
-
- </script>
+</script>
 
 <script type="text/javascript">
     var questions = $(".question").length;
@@ -930,7 +920,7 @@ $('#finalSubmitBtn').on('click', function(){
 
 // 'HOME' PAGE WEERGEVEN - vraag voor hans en frank (telt elke factor mee of elk niveau mee)
 
-    let currentPage = 11; // set current page to 0 (page1)
+    let currentPage = 0; // set current page to 0 (page1)
 
 
 
@@ -993,45 +983,17 @@ $(".volgende").on("click", () => {
         $(".page:not(.active)").hide();
     })
 
-    function printContent() {
+    function takeScreenshot() {
             // Get the screenshot of the entire container
-            var printContainer = document.getElementById("results");
-            var htmlContent = printContainer.innerHTML;
-            var cssContent = window.getComputedStyle(printContainer);
-            var pdfDoc = new jsPDF();
+            const screenshot = document.querySelector('print').outerHTML;
             
-            pdfDoc.fromHTML(htmlContent, 15, 15, {
-                'width': 170,
-                'height': 220
-            });
-            pdfDoc.addCSS(cssContent);
-            pdfDoc.save('VeerkrachtAnalyse.pdf')
-            var link = document.createElement('a');
-            link.href = 'data:application/pdf;base64,'+ btoa(pdfDoc.output());
-            link.setAttribute('download', 'VeerkrachtAnalyse.pdf');
+            // Save the screenshot as a file
+            const blob = new Blob([screenshot], {type: 'image/png'});
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute('download', 'screenshot.png');
             link.click();
         }
-
-
-        document.getElementById('downloaBtn').addEventListener('click', function() {
-            const element = document.getElementById('export-container');
-            const options = {
-                margin: 10,
-                filename: 'exported-document.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-            };
-
-            html2pdf()
-                .from(element)
-                .set(options)
-                .outputPdf()
-                .then(function(pdf) {
-                    // The PDF has been generated. You can save it, display it, or do anything else you want.
-                    pdf.save();
-                });
-        });
 
 // ANTWOORDEN SELECTIE
     $('.answer').on('click', function(){

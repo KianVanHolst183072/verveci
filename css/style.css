@@ -116,7 +116,7 @@ p  {
   background-color:#e0e0e0;
   border-radius: 3px;
   height: 10px;
-  width: 80%;
+  width: 90%;
   margin-bottom: 0px;
   margin-top: 0px;
   display: inline-block;
@@ -129,7 +129,7 @@ p  {
   border-radius: 3px;
   width: 20%;
   height:100%;
-  transition: 0.5s ease 0.3s;
+  transition: 0.25s ease 0.1s;
 
 }
 
@@ -195,6 +195,7 @@ ul {
 }
 
 
+
 /* BUTTONS */
 
 .button {
@@ -230,6 +231,36 @@ ul {
   color: white;
   transform: translateY(-0.1rem);
   transition: transform 150ms;
+}
+
+.info-button {
+  position: relative;
+  display: inline-block;
+  margin: 2px;
+  background-color: white;
+  border: none;
+}
+
+.info-button i {
+  font-size: 12px;
+  color: #333;
+}
+
+.info-text {
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  transform: translate(-10%, -135%);
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  visibility: hidden;
+  width: 300px;
+}
+
+.info-button:hover .info-text {
+  visibility: visible;
 }
 
 /* FORM */
@@ -318,7 +349,7 @@ ul {
   background-color:#00406B;
   color: #e2e2e2;
   font-family: 'Courier New', Courier, monospace;
-  transition: 1s ease 0.3s;
+  transition: 0.5s ease 0.2s;
 }
 
 .flex-column {
