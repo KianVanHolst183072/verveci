@@ -11,12 +11,12 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"
   integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
   crossorigin="anonymous"></script>
-  <script src="/js/html2pdf.js"></script>
+  <script src="/js/server.js"></script>
+  
   <script type="module" src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js"></script>
   <script type="module" src="https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js"></script>
   
   
-  <script src="./js/script.js" type="module"></script>
 </head>
 
 <body>
@@ -616,19 +616,19 @@
                     <div class="form-group">
                         <label id="label" for="exampleFormControlSelect1">Selecteer de branch van uw bedrijf:</label>
                     <select class="form-control" id="selectBranch">
-                        <option value="1">Architecture and Built Environment</option>
-                        <option value="2">Product Design</option>
-                        <option value="3">Fashion</option>
-                        <option value="4">Game design (including entertainment and serious games)</option>
-                        <option value="5">Digital design (including digital interactive and user experience, UX)</option>
-                        <option value="6">Brand creation and communication</option>
-                        <option value="7">System and process design (service, social and policy design)</option>
-                        <option value="8">Film and photography (series and documentaries)</option>
-                        <option value="9">Radio & TV (including online video, streaming and formats)</option>
-                        <option value="10">Events (festivals, concerts and musicals)</option>
-                        <option value="11">Music (including modern genres and classical music)</option>
-                        <option value="12">Stage performances</option>
-                        <option value="13">Visual arts</option>
+                        <option value="A">Architecture and Built Environment</option>
+                        <option value="B">Product Design</option>
+                        <option value="C">Fashion</option>
+                        <option value="D">Game design (including entertainment and serious games)</option>
+                        <option value="E">Digital design (including digital interactive and user experience, UX)</option>
+                        <option value="F">Brand creation and communication</option>
+                        <option value="G">System and process design (service, social and policy design)</option>
+                        <option value="H">Film and photography (series and documentaries)</option>
+                        <option value="I">Radio & TV (including online video, streaming and formats)</option>
+                        <option value="J">Events (festivals, concerts and musicals)</option>
+                        <option value="K">Music (including modern genres and classical music)</option>
+                        <option value="L">Stage performances</option>
+                        <option value="M">Visual arts</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -650,7 +650,7 @@
             </div>
         </div>
 
-        <div class="page page8" id="export-container">
+        <div class="page page8">
             <div class="row top-app">
                 <h2><img id="logo" src="./images/logo.png">| Uw resultaat</h2>
             </div>
@@ -795,7 +795,17 @@
     </div>
 </body>
 <script type="module">
-    
+   // Fetch data from the backend
+fetch('http://127.0.0.1:3000/api/branch-data')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    // Process and display your data here
+  })
+  .catch(error => {
+    console.error('Error fetching data: ', error);
+  });
+ 
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js';
 import { getDatabase, ref, set } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js';
 const jsPDF = require("jspdf");
@@ -930,7 +940,7 @@ $('#finalSubmitBtn').on('click', function(){
 
 // 'HOME' PAGE WEERGEVEN - vraag voor hans en frank (telt elke factor mee of elk niveau mee)
 
-    let currentPage = 11; // set current page to 0 (page1)
+    let currentPage = 0; // set current page to 0 (page1)
 
 
 

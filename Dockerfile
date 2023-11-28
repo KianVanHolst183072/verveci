@@ -20,4 +20,6 @@ COPY ./images /usr/share/nginx/html/images
 EXPOSE 80
 
 # Start Nginx when the container has provisioned.
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;", ] 
+
+# "node", "server.js"?
