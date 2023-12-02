@@ -947,7 +947,7 @@ document.getElementById('myForm').addEventListener('submit', function(e) {
 
     var json = JSON.stringify(object);
 
-    fetch('http://localhost:8000/data/', {
+    fetch('http://127.0.0.1:80/data/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

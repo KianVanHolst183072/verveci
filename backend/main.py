@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException, Depends, status
+from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 from typing import Annotated
@@ -9,14 +10,20 @@ from datetime import datetime
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.mount("/static", StaticFiles(directory="/usr/src/app/app"), name="static")
+
 @app.get("/", include_in_schema=False)
 async def root():
     return RedirectResponse(url="/docs")
 
-origins = [
-    "http://127.0.0.1:5500", 
-    "http://localhost:5500"
 
+origins = [
+    "http://localhost",
+    "http://localhost:80",
+    "http://127.0.0.1",
+    "http://127.0.0.1:80",
+    "http://192.168.65.1"
 ]
 
 app.add_middleware(
@@ -26,8 +33,6 @@ app.add_middleware(
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],  # Allows all headers
 )
-
-
 
 models.Base.metadata.create_all(bind=engine)
 

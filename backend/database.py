@@ -2,7 +2,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-URL_DATABASE = 'mysql+pymysql://root:my-secret-pw@localhost:3306/test'
+URL_DATABASE = 'mysql+pymysql://root:my-secret-pw@host.docker.internal:3306/test'
+
 
 engine = create_engine(URL_DATABASE)
 
