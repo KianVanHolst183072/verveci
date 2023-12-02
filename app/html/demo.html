@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Verveci Test Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+  integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+  crossorigin="anonymous"></script>
+  <script src="/js/server.js"></script>
+  
+  <script type="module" src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js"></script>
+  <script type="module" src="https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js"></script>
+  
+  
+</head>
+
+<body>
+    <div class="progress" style="justify-content: flex-start;">
+        <div class="progressmade">
+        </div>
+    </div>
+
+    <div class="container print">
+        <div class="page page1">
+            <div class="row top-app">
+                <h2><img id="logo" src="./images/logo.png">| Resillience benchmark tool</h2>
+            </div>
+        <div>
+            <h3>Disclaimer</h3>
+            <p style="text-align: center;margin: 0px 50px 0px 50px; font-size: 150%;">
+                This benchmark tool was developed by a research group part of Breda University of Applied Sciences. 
+                Prior to developing this tool, a screening was conducted across various sectors within the creative industry. 
+                From this screening, a database was developed with which you can compare yourself.<br><br>
+                The answers you provide in this screening are solely intended for research purposes and the development of new instruments.
+                They are collected to gain insights and analyze trends within the creative industry.
+                The collected (personal) data will be treated with strict confidentiality and will not be provided to third parties.
+                Access to the answers and results of this screening is limited to authorized persons involved in the research and development process.
+                This data is stored in a database.<br><br>
+                Your participation in this screening is completely voluntary.
+                You can stop filling out the questionnaire at any time without any obligation or negative consequences.
+                By starting the screening, you confirm that you have been informed of the above points and give your consent for the processing of your personal data for research purposes.
+                If you have any questions or comments about the processing of your data in the context of this research, please contact us using the provided contact details. </p>
+        </div>
+
+            <div class="row bottom-app" style="justify-content: flex-end;"  >
+                <button id="nextBtn" class="button volgende">Agree</button>
+            </div>
+        </div>
+ 
+        <div class="page page2">
+            <div class="row top-app">
+                <h2><img id="logo" src="./images/logo.png">| Team coordination and planning</h2>
+             </div>
+            <div class="row body-app">
+                <form id="p1">
+                    <div class="question">
+                        <h3 class="question">In my team we have fixed standards, checklists, guidebooks, resource matrices, and debriefs.</h3>
+                    </div>
+                    <div class="answers">
+                        <div class="answer" name="q31" value="0">Disagree</div>
+                        <div class="answer" name="q31" value="1">Somewhat disagree</div>
+                        <div class="answer" name="q31" value="2">Neutral</div>
+                        <div class="answer" name="q31" value="3">Somewhat agree</div>
+                        <div class="answer" name="q31" value="4">Agree</div>
+                    </div>
+
+                    <div class="question">
+                        <h3 class="question">We have a team with a clear formalised division of tasks and quality control system.</h3>
+                    </div>
+                    <div class="answers">
+                        <div class="answer" name="q32" value="0">Disagree</div>
+                        <div class="answer" name="q32" value="1">Somewhat disagree</div>
+                        <div class="answer" name="q32" value="2">Neutral</div>
+                        <div class="answer" name="q32" value="3">Somewhat agree</div>
+                        <div class="answer" name="q32" value="4">Agree</div>
+                    </div>
+                    <div class="question">
+                        <h3>Our team lead provides adequate tools and training to keep our performance up to standard.</h3>
+                    </div>
+                    <div class="answers">
+                        <div class="answer" name="q33" value="0">Disagree</div>
+                        <div class="answer" name="q33" value="1">Somewhat disagree</div>
+                        <div class="answer" name="q33" value="2">Neutral</div>
+                        <div class="answer" name="q33" value="3">Somewhat agree</div>
+                        <div class="answer" name="q33" value="4">Agree</div>
+                    </div>
+                </form>
+            </div>
+            <div class="row bottom-app">
+                <button id="backBtn"class="button terug">Back</button>
+                <button id="nextBtn" class="button volgende">Next</button>
+            </div>
+        </div>
+
+        <div class="page page3">
+            <div class="row top-app">
+                <h2><img id="logo" src="./images/logo.png">| Resource management</h2>
+             </div>
+            <div class="row body-app">
+                <form id="p2">
+                    <div class="question">
+                        <h3 class="question">Our organisation has mitigated legal and regulatory compliance risks.</h3>
+                    </div>
+                    <div class="answers">
+                        <div class="answer" name="q41" value="0">Disagree</div>
+                        <div class="answer" name="q41" value="1">Somewhat disagree</div>
+                        <div class="answer" name="q41" value="2">Neutral</div>
+                        <div class="answer" name="q41" value="3">Somewhat agree</div>
+                        <div class="answer" name="q41" value="4">Agree</div>
+                    </div>
+
+                    <div class="question">
+                        <h3 class="question">Fixed costs: Our organsation keeps these low in order to facilitate agility.</h3>
+                    </div>
+                    <div class="answers">
+                        <div class="answer" name="q42" value="0">Disagree</div>
+                        <div class="answer" name="q42" value="1">Somewhat disagree</div>
+                        <div class="answer" name="q42" value="2">Neutral</div>
+                        <div class="answer" name="q42" value="3">Somewhat agree</div>
+                        <div class="answer" name="q42" value="4">Agree</div>
+                    </div>
+                    <div class="question">
+                        <h3>I think that decision-making processes are well positioned in my organisation.</h3>
+                    </div>
+                    <div class="answers">
+                        <div class="answer" name="q43" value="0">Disagree</div>
+                        <div class="answer" name="q43" value="1">Somewhat disagree</div>
+                        <div class="answer" name="q43" value="2">Neutral</div>
+                        <div class="answer" name="q43" value="3">Somewhat agree</div>
+                        <div class="answer" name="q43" value="4">Agree</div>
+                    </div>
+                    <div class="question">
+                        <h3 class="question">My organisation is constantly looking for new market opportunities.</h3>
+                    </div>
+                    <div class="answers">
+                        <div class="answer" name="q44" value="0">Disagree</div>
+                        <div class="answer" name="q44" value="1">Somewhat disagree</div>
+                        <div class="answer" name="q44" value="2">Neutral</div>
+                        <div class="answer" name="q44" value="3">Somewhat agree</div>
+                        <div class="answer" name="q44" value="4">Agree</div>
+                    </div>
+
+                    <div class="question">
+                        <h3 class="question">My organisation is able to attract and retain talent.</h3>
+                    </div>
+                    <div class="answers">
+                        <div class="answer" name="q45" value="0">Disagree</div>
+                        <div class="answer" name="q45" value="1">Somewhat disagree</div>
+                        <div class="answer" name="q45" value="2">Neutral</div>
+                        <div class="answer" name="q45" value="3">Somewhat agree</div>
+                        <div class="answer" name="q45" value="4">Agree</div>
+                    </div>
+                </form>
+            </div>
+            <div class="row bottom-app">
+                <button id="backBtn"class="button terug">Back</button>
+                <button id="nextBtn" class="button volgende">Next</button>
+            </div>
+        </div>
+
+        <div class="page page4">
+            <div class="row top-app">
+                <h2><img id="logo" src="./images/logo.png">| Network strength</h2>
+             </div>
+            <div class="row body-app">
+                <form id="p3">
+                    <div class="question">
+                        <h3 class="question">In my organisation we set up long-term partnerships within our network (e.g. with the local government, policymakers, business network, etc.)</h3>
+                    </div>
+                    <div class="answers">
+                        <div class="answer" name="q61" value="0">Disagree</div>
+                        <div class="answer" name="q61" value="1">Somewhat disagree</div>
+                        <div class="answer" name="q61" value="2">Neutral</div>
+                        <div class="answer" name="q61" value="3">Somewhat agree</div>
+                        <div class="answer" name="q61" value="4">Agree</div>
+                    </div>
+
+                    <div class="question">
+                        <h3 class="question">In my organisation we have people and processes in place to enable adequate project structuring and management.</h3>
+                    </div>
+                    <div class="answers">
+                        <div class="answer" name="q62" value="0">Disagree</div>
+                        <div class="answer" name="q62" value="1">Somewhat disagree</div>
+                        <div class="answer" name="q62" value="2">Neutral</div>
+                        <div class="answer" name="q62" value="3">Somewhat agree</div>
+                        <div class="answer" name="q62" value="4">Agree</div>
+                    </div>
+                    <div class="question">
+                        <h3>In my organisation, our internal teams collaborate with external companies and/or professionals (e.g. the local government, business network/ecosystem)  to complete projects. </h3>
+                    </div>
+                    <div class="answers">
+                        <div class="answer" name="q63" value="0">Disagree</div>
+                        <div class="answer" name="q63" value="1">Somewhat disagree</div>
+                        <div class="answer" name="q63" value="2">Neutral</div>
+                        <div class="answer" name="q63" value="3">Somewhat agree</div>
+                        <div class="answer" name="q63" value="4">Agree</div>
+                    </div>
+                </form>
+            </div>
+            <div class="row bottom-app">
+                <button id="backBtn"class="button terug">Back</button>
+                <button id="submitBtn" class="button">Next</button>
+            </div>
+        </div>
+
+        <div class="page page5">
+            <div class="row top-app">
+                <h2><img id="logo" src="./images/logo.png">| Your information</h2>
+            </div>
+            <div class="row body-app">
+                <form>
+                    <div class="form-group">
+                      <label id="label" for="exampleInputEmail1">Name</label>
+                      <input type="naam" class="form-control" id="naam" aria-describedby="emailHelp" placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label id="label" for="exampleInputEmail1">E-mail address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your e-mail address">
+                      </div>
+                    <div class="form-group">
+                      <label id="label" for="bedrijf">Company name</label>
+                      <input type="text" class="form-control" id="bedrijf" placeholder="Enter for which company you work for">
+                    </div>
+                    <div class="form-group">
+                        <label id="label" for="exampleFormControlSelect1">Select your branch:</label>
+                    <select class="form-control" id="selectBranch">
+                        <option value="A">Architecture and Built Environment</option>
+                        <option value="B">Product Design</option>
+                        <option value="C">Fashion</option>
+                        <option value="D">Game design (including entertainment and serious games)</option>
+                        <option value="E">Digital design (including digital interactive and user experience, UX)</option>
+                        <option value="F">Brand creation and communication</option>
+                        <option value="G">System and process design (service, social and policy design)</option>
+                        <option value="H">Film and photography (series and documentaries)</option>
+                        <option value="I">Radio & TV (including online video, streaming and formats)</option>
+                        <option value="J">Events (festivals, concerts and musicals)</option>
+                        <option value="K">Music (including modern genres and classical music)</option>
+                        <option value="L">Stage performances</option>
+                        <option value="M">Visual arts</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="radio" id="management" name="functie" value="own">
+                        <label style="margin: 0px 5px 0px 5px;" for="owner">Owner</label>
+
+                        <input type="radio" id="employee" name="functie" value="man">
+                        <label style="margin: 0px 5px 0px 5px;" for="management">Management</label>
+
+                        <input type="radio" id="employee" name="functie" value="emp">
+                        <label style="margin: 0px 5px 0px 5px;" for="employee">Employee</label>
+                    </div>
+
+                  </form>
+            </div>
+            <div class="row bottom-app">
+                <button id="backBtn"class="button terug">Back</button>
+                <button id="finalSubmitBtn" class="button">Submit</button>
+            </div>
+        </div>
+
+        <div class="page page6">
+            <div class="row top-app">
+                <h2><img id="logo" src="./images/logo.png">| Your result</h2>
+            </div>
+            <div class="body-app">
+                <div class="row">
+                    <div class="col">
+                        <h4>Scores</h4>
+                        <div class="card scr">
+                            <h5 id="bedrijfnaam">Company name</h5>
+                            <ul><li><strong>Overall resillience</strong></li>
+                            <li><div class="scorebar"><div class="scorebarfill"></div></div><p id="score"></p></li>
+                            <li><div class="scorebar"><div class="scorebarfillbr"></div></div><p id="scorebr"></p></li>
+                            <li><div class="scorebar"><div class="scorebarfillnl"></div></div><p id="scorenl"></p></li>
+                            <li><button class="info-button">
+                                <i class="fa fa-info-circle"></i>
+                                <span class="info-text">Here, things like clear task division, briefings, standards, checklists are mentioned.</span>
+                                </button>
+                                Team coordination and planning</li>
+                            <li><div class="scorebar"><div class="scorebarfill"></div></div><p id="score">30</p></li>
+                            <li><div class="scorebar"><div class="scorebarfillbr"></div></div><p id="scorebr">30</p></li>
+                            <li><div class="scorebar"><div class="scorebarfillnl"></div></div><p id="scorenl">30</p></li>
+
+                            <li><button class="info-button">
+                                    <i class="fa fa-info-circle"></i>
+                                    <span class="info-text">Here, among other things, flexible deployment of resources, focus on delivered quality, and portfolio management are mentioned.</span>
+                                </button>
+                                Resource management</li>
+                            <li><div class="scorebar"><div class="scorebarfill"></div></div><p id="score"></p></li>
+                            <li><div class="scorebar"><div class="scorebarfillbr"></div></div><p id="scorebr"></p></li>
+                            <li><div class="scorebar"><div class="scorebarfillnl"></div></div><p id="scorenl"></p></li>
+                            <li><button class="info-button">
+                                    <i class="fa fa-info-circle"></i>
+                                    <span class="info-text">Additionally, aspects such as the capacity to collaborate on projects with external parties, and having long-term collaborative partnerships are noted.</span>
+                                </button>
+                                Network strength
+                            </li>
+                            <li><div class="scorebar"><div class="scorebarfill"></div></div><p id="score"></p></li>
+                            <li><div class="scorebar"><div class="scorebarfillbr"></div></div><p id="scorebr"></p></li>
+                            <li><div class="scorebar"><div class="scorebarfillnl"></div></div><p id="scorenl"></p></li>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h4>Explanation</h4>
+                        <div class="card exp">
+                            
+                            <p>
+                                The creative industry is a significant sector that is expected to formulate responses to key societal developments and give meaning to technological advancements. 
+                                To meet these expectations, a resilient industry is needed that is capable of responding to changes in the environment and within the organization itself.
+                                <br><br>
+                                Resilience is determined by the ability to:
+                                <br>
+                                <ol>
+                                    <li>
+                                        Absorb changes in such a way that the organization continues to exist.
+                                    </li>
+                                    <li>
+                                        Adapt to the new reality (adaptation).
+                                    </li>
+                                    <li>
+                                        In line with the English proverb “never waste a good crisis,” changes can even act as a catalyst to transform the organization.
+                                    </li>
+                                    <li>
+                                        After extensive research, BUas has developed a model that can measure resilience on four different levels: Individual, Team, Organization, Network. 
+                                        The model measures resilience based on six factors in total. This model has been validated in a study involving over 200 companies from the creative industry.
+                                    </li>
+                                </ol>
+                            </p>
+                            <div><div class='box darkblue'></div>= Your average score</div>
+                            <div><div class='box blue'></div>= Average score within your branch</div>
+                            <div><div class='box orange'></div>= Average score within the creative industry in the Netherlands</div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h4>Recommended instruments to develop</h4>
+                        <p>
+                            Based on your achieved results, we offer the following tools to strengthen resilience within your company.
+                            Our tools have been carefully compiled based on insights gained from previous research.
+                            With these tools, you can proactively work on strengthening resilience within your organization.
+                            We hope that these tools will help you elevate your organization to new heights and promote a resilient and successful company culture.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 id="recInstruments">
+                            Resource management
+                        </h5>
+                        <p>
+                            For developing resource managment we have several courses in financial management, change management, branded entertainment marketing and exploring strategy course.
+
+                        </p>
+                    </div>
+                    <div class="col">
+                        <h5 id="recInstruments">
+                            Network strength
+                        </h5>
+                        <p>
+                            To increase network strength, we provide courses like production pipeline management, stakeholder analysis and social innovation.
+                        </p>
+                    </div>
+                    <div class="col">
+                        <h5 id="recInstruments">
+                            Team coordination and planning
+                        </h5>
+                        <p>
+                            On team level we provide courses in creative production (pre-, production and post production on Masters level), project management and a Lego Serious Play workshop!
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row bottom-app">
+                <button id="downloaBtn" class="button">Download</button>
+                <button class="button" onclick="window.open('https://edubuas.sharepoint.com/sites/VerVeCi-Research/SitePages/Ontwikkelen.aspx')">Develop</button>
+            </div>
+        </div>        
+    </div>
+</body>
+<script type="module">
+   // Fetch data from the backend
+fetch('http://127.0.0.1:3000/api/branch-data')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    // Process and display your data here
+  })
+  .catch(error => {
+    console.error('Error fetching data: ', error);
+  });
+ 
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js';
+import { getDatabase, ref, set } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js';
+const jsPDF = require("jspdf");
+const firebaseConfig = {
+    apiKey: "AIzaSyACzc4wTKVuYXssv30ykUwf4KLs8uys7Ow",
+    authDomain: "verveci-demo.firebaseapp.com",
+    databaseURL: "https://verveci-demo-default-rtdb.europe-west1.firebasedatabase.app/",
+    projectId: "verveci-demo",
+    storageBucket: "verveci-demo.appspot.com",
+    messagingSenderId: "956385268653",
+    appId: "1:956385268653:web:ae0c7f2179a162b6c24724"
+  };
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase();
+
+
+// Function to generate a unique user ID (you need to implement this)
+function generateUniqueUserId() {
+  // Implement your logic here to generate a unique user ID
+  // This can be a combination of letters, numbers, or any format you prefer
+  // For simplicity, you can use a timestamp-based ID as an example
+  var timestamp = Date.now();
+  return 'user_' + timestamp;
+}
+
+// Function to store data
+function storeData() {
+  var userId = generateUniqueUserId(); // Generate a unique user ID
+  var selectedAnswers = document.querySelectorAll('.answer.selected');
+  var formData = {}; // Initialize an object to store the data
+
+  // Iterate through selected answers and store 'value' under 'name'
+  selectedAnswers.forEach(function(answerElement) {
+    var nodeName = answerElement.getAttribute('name');
+    var answerText = answerElement.getAttribute('value');
+
+    // Create or update the formData object with the data
+    if (!formData[nodeName]) {
+      formData[nodeName] = {}; // Create a new object for the nodeName if it doesn't exist
+    }
+    formData[nodeName] = parseFloat(answerText);
+  });
+
+  // Get form input values
+  var naam = document.getElementById('naam').value;
+  var email = document.getElementById('exampleInputEmail1').value;
+  var bedrijf = document.getElementById('bedrijf').value;
+  var branch = document.getElementById('selectBranch').value;
+  var functie = document.querySelector('input[name="functie"]:checked').value;
+
+  // Add form data to the formData object
+  formData['naam'] = naam;
+  formData['email'] = email;
+  formData['bedrijf'] = bedrijf;
+  formData['branch'] = branch;
+  formData['functie'] = functie;
+
+  // Reference to the node corresponding to the user
+  var reference = ref(db, 'test_data/users/' + userId);
+
+  // Store the combined form data and selected answers under the user's node
+  set(reference, formData, function(error) {
+    if (error) {
+      console.error("Error storing data:", error);
+    } else {
+      console.log("Data stored successfully under user ID:", userId);
+    }
+  });
+}
+
+// Add a submit event listener to the form
+document.addEventListener('DOMContentLoaded', function() {
+  var form = document.querySelector('form');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent the default form submission behavior
+    storeData(); // Call the function to store the data in Firebase
+  });
+});
+
+
+// ENGLISH BUTTON
+const button = document.getElementById("engBtn");
+button.addEventListener("click", async () => {
+  const response = await fetch("index_eng.html");
+  const html = await response.text();
+  document.body.innerHTML = html;
+});
+
+
+ </script>
+
+<script type="text/javascript">
+    var questions = $(".question").length;
+    var totalp1 = 0;
+    var totalp2 = 0;
+    var totalp3 = 0;
+    var avg = 0;
+    var instruments = ['Team coordination and planning', 'Resource management', 'Network strength']
+    const progressMade = document.querySelector('.progressmade')
+    progressMade.style.maxWidth = `0%`;
+    console.log(progressMade)
+
+// 'HOME' PAGE WEERGEVEN - vraag voor hans en frank (telt elke factor mee of elk niveau mee)
+
+    let currentPage = 0; // set current page to 0 (page1)
+    $(".page").eq(currentPage).addClass("active"); // add active class to current page
+    $(".page.active").show();
+    $(".page:not(.active)").hide();
+
+// BUTTONS
+// TERUG KNOP
+    $(".terug").on("click", () => {
+        $(".page").eq(currentPage).removeClass("active"); // remove active class from current page
+        currentPage--; // move to previous page
+        $(".page").eq(currentPage).addClass("active"); // add active class to new current page
+        $(".page.active").show();
+        $(".page:not(.active)").hide();
+    });
+// VOLGENDE KNOP
+$(".volgende").on("click", () => {
+        $(".page").eq(currentPage).removeClass("active"); // remove active class from current page
+        currentPage++; // move to next page
+        $(".page").eq(currentPage).addClass("active"); // add active class to new current page
+        $(".page.active").show();
+        $(".page:not(.active)").hide();
+    });
+// SUBMIT KNOP  
+    $('#submitBtn').on('click', function(){
+        if($('.selected').length == 11){
+            avgp1 = Math.round((totalp1/12)*100);
+            avgp2 = Math.round((totalp2/20)*100);
+            avgp3 = Math.round((totalp3/12)*100);
+            avgtotal = Math.round((avgp1 + avgp2 + avgp3)/3)
+            $(".page").eq(currentPage).removeClass("active"); // remove active class from current page
+            currentPage = currentPage + 1; // move to next page
+            $(".page").eq(currentPage).addClass("active"); // add active class to new current page
+            $(".page.active").show();
+            $(".page:not(.active)").hide();
+
+            
+            updateScorebars();
+        }else{
+            message = 'Please answer all questions for the analysis';
+            alert(message);
+        }
+    })
+
+
+// FINAL SUBMIT KNOP  
+$('#finalSubmitBtn').on('click', function(){
+        if($('.selected').length == 11){
+
+
+            $(".page").eq(currentPage).removeClass("active"); // remove active class from current page
+            currentPage = currentPage + 1; // move to next page
+            $(".page").eq(currentPage).addClass("active"); // add active class to new current page
+            $(".page.active").show();
+            $(".page:not(.active)").hide();
+
+            const bedrijfInput = document.getElementById("bedrijf");
+            let bedrijfnaam = document.getElementById('bedrijfnaam');
+            bedrijfnaam.innerHTML = bedrijfInput.value;
+
+            updateScorebars();
+
+            progressMade.style.maxWidth = `100%`;
+
+            storeData();
+            
+        }else{
+            message = 'Beantwoord alstublieft alle vragen voor uw analyse';
+            alert(message);
+        }
+
+    })
+
+// DOWNLOAD KNOP
+    $('#downloadBtn').on('click', function(){
+        $(".page").eq(currentPage + 1).addClass("active"); // add active class to new current page
+        $(".page.active").show();
+        $(".page:not(.active)").hide();
+        hideButtons();
+        window.print();
+        showButtons();
+        $(".page").eq(currentPage + 1).removeClass("active")
+        $(".page.active").show();
+        $(".page:not(.active)").hide();
+    })
+
+ 
+
+// ANTWOORDEN SELECTIE
+    $('.answerrr').on('click', function(){
+        var pageId = $(this).parent().parent().attr('id');
+        if($(this).parent().find('.selected').length > 0) {
+            window['total' + pageId] -=$(this).parent().find('.selected').data('value');
+            $(this).parent().find('.selected').removeClass('selected');
+        }
+        progress = ($('.selected').length/11)*100
+        progressMade.style.maxWidth = `${progress}%`;
+
+        $(this).addClass('selected');
+        window['total' + pageId] += $(this).data('value');
+    })
+
+// FUNCTIES
+$('.answer').on('click', function(){
+    var pageId = $(this).parent().parent().attr('id');
+    if($(this).parent().find('.selected').length > 0) {
+        var oldValue = parseInt($(this).parent().find('.selected').attr('value'), 10);
+        window['total' + pageId] -= oldValue;
+        $(this).parent().find('.selected').removeClass('selected');
+    }
+
+    $(this).addClass('selected');
+    var newValue = parseInt($(this).attr('value'), 10);
+    window['total' + pageId] += newValue;
+
+    var progress = ($('.selected').length / 11) * 100;
+    progressMade.style.maxWidth = `${progress}%`;
+});
+
+// Function to hide all buttons
+function hideButtons() {
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].style.display = "none";
+  }
+}
+
+// Function to unhide all buttons
+function showButtons() {
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].style.display = "block";
+  }
+}
+// RESULTAAT -> SCOREBARS
+function updateScorebars() {
+    const scores = [avgtotal, avgp1, avgp2, avgp3];
+    const scoresexcl = [avgp1, avgp2, avgp3];
+    const filmarray = [25, 75, 50, 30];
+    const NLarray = [30, 60, 59, 64];
+    const scorebars = document.querySelectorAll('.scorebarfill');
+    const scorebarsBR = document.querySelectorAll('.scorebarfillbr');
+    const scorebarsNL = document.querySelectorAll('.scorebarfillnl');
+    const scoretext = document.querySelectorAll('#score')
+    const scoretextBR = document.querySelectorAll('#scorebr')
+    const scoretextNL = document.querySelectorAll('#scorenl')
+
+
+    scorebars.forEach((scorebar, index) => {
+        const value = scores[index];
+        scorebar.style.width = `${value}%`;
+    })
+    
+    scoretext.forEach((scoretext, index) => {
+        const value = scores[index];
+        scoretext.innerHTML= `${value}`; 
+    })
+
+    
+    scorebarsBR.forEach((scorebarBR, index) => {
+        const value = filmarray[index];
+        scorebarBR.style.width = `${value}%`;
+    })
+    
+    scoretextBR.forEach((scoretextBR, index) => {
+        const value = filmarray[index];
+        scoretextBR.innerHTML= `${value}`; 
+    })
+
+    
+    scorebarsNL.forEach((scorebarNL, index) => {
+        const value = NLarray[index];
+        scorebarNL.style.width = `${value}%`;
+    })
+    
+    scoretextNL.forEach((scoretextNL, index) => {
+        const value = NLarray[index];
+        scoretextNL.innerHTML= `${value}`; 
+    })
+
+    const lowest = getLowestIndices(scoresexcl, 3);
+    const searchResult = searchLowestIndicesValues(lowest, instruments)
+
+}
+
+function getLowestValues(scores) {
+  const sortedScores = scoresexcl.slice().sort((a, b) => a - b);
+  const lowestValues = sortedScores.slice(0, 3);
+  const indices = [];
+  
+  for (let i = 0; i < scoresexcl.length; i++) {
+    if (lowestValues.includes(scoresexcl[i])) {
+      indices.push(i);
+    }
+  }
+  
+  return indices;
+}
+
+function getLowestIndices(inputArray, count) {
+  const indices = [];
+
+  for (let i = 0; i < count; i++) {
+    let lowestIndex = -1;
+    let lowestValue = Infinity;
+
+    for (let j = 0; j < inputArray.length; j++) {
+      if (inputArray[j] < lowestValue && indices.indexOf(j) === -1) {
+        lowestValue = inputArray[j];
+        lowestIndex = j;
+      }
+    }
+
+    indices.push(lowestIndex);
+  }
+
+  return indices;
+}
+
+function searchLowestIndicesValues(lowestIndices, searchArray) {
+  const result = [];
+  
+  lowestIndices.forEach(index => {
+    if (index >= 0 && index < searchArray.length) {
+      result.push(searchArray[index]);
+    }
+  });
+
+  const recinstruments = document.querySelectorAll('#recInstruments');
+    recinstruments.forEach((recinstrument, index) => {
+        const value = result[index];
+        recinstrument.innerHTML = value;
+    })
+  return result;
+}
+
+function updateRecInstruments(){
+
+}
+
+
+
+</script>
+
+</body>
+
+</html>
