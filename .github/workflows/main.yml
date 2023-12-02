@@ -11,13 +11,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag verveci-app:${{ github.sha }}
+      run: docker build . --file Dockerfile --tag kian183072/verveci_app:${{ github.sha }}
 
     - name: Log in to Docker Hub
-      uses: docker/login-action@v1
+      uses: docker/login-action@v2
       with:
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
 
     - name: Push the Docker image
-      run: docker push verveci-app:${{ github.sha }}
+      run: docker push kian183072/verveci_app:${{ github.sha }}
