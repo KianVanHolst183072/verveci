@@ -57,54 +57,55 @@ $(".page").eq(currentPage).addClass("active"); // add active class to current pa
 $(".page.active").show();
 $(".page:not(.active)").hide();
 
-if ($('.selected').length === 44) {
+
     document.getElementById('myForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        var formData = new FormData(this);
-        var object = {};
-        formData.forEach((value, key) => object[key] = value);
+        if ($('.selected').length === 44) {
+            // Add the code for radio button validation here
+            const radioButtons = document.querySelectorAll('input[name="role"]');
+            let selected = false;
 
-        // Merge the selectedAnswers with the form data
-        Object.assign(object, selectedAnswers);
-
-        var json = JSON.stringify(object);
-
-        fetch('http://127.0.0.1:80/data/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: json
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                toFinalPage();
-            })
-            .catch(error => console.error(error));
-
-        // Add the code for radio button validation here
-        const radioButtons = document.querySelectorAll('input[name="role"]');
-        let selected = false;
-
-        // Check if at least one radio button is selected
-        for (const radioButton of radioButtons) {
-            if (radioButton.checked) {
-                selected = true;
-                break;
+            // Check if at least one radio button is selected
+            for (const radioButton of radioButtons) {
+                if (radioButton.checked) {
+                    selected = true;
+                    break;
+                }
             }
-        }
+            if (selected) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                var object = {};
+                formData.forEach((value, key) => object[key] = value);
 
-        if (!selected) {
-            // Display an error message or handle the validation as needed
-            alert("Please select a role before submitting.");
-            return; // Prevent the form from submitting if validation fails
+                // Merge the selectedAnswers with the form data
+                Object.assign(object, selectedAnswers);
+
+                var json = JSON.stringify(object);
+
+                fetch('http://127.0.0.1:80/data/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: json
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        toFinalPage();
+                    })
+                    .catch(error => console.error(error));
+            }else {
+                // Display an error message or handle the validation as needed
+                alert("Selecteer uw rol binnen het bedrijf voor het indienen.");
+                return; // Prevent the form from submitting if validation fails
+            }
+        } else {
+            message = 'Beantwoord alstublieft alle vragen voor uw analyse';
+            alert(message);
         }
     });
-} else {
-    message = 'Beantwoord alstublieft alle vragen voor uw analyse';
-    alert(message);
-}
+
 
 
 // BUTTONS
