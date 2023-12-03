@@ -81,10 +81,18 @@ function getBranchAverages(selectedBranch) {
             }
             return response.json();
         })
-        .then((data) => {
-            // Handle the response data here
-            console.log(data);
-            // You can now use the data in your web app
+        .then(averages => {
+            console.log('Overall Averages:', averages);
+        
+            // Update brancharray with the averages
+            brancharray[0] = Math.round(averages.AvgA * 25);
+            brancharray[1] = Math.round(averages.AvgB * 25);
+            brancharray[2] = Math.round(averages.AvgC * 25);
+            brancharray[3] = Math.round(averages.AvgD * 25);
+            brancharray[4] = Math.round(averages.AvgE * 25);
+            brancharray[5] = Math.round(averages.AvgF * 25);
+        
+            console.log('Updated brancharray:', brancharray);
         })
         .catch((error) => {
             // Handle errors here
@@ -286,8 +294,6 @@ buttons[i].style.display = "block";
 function updateScorebars() {
 const scores = [avgtotal, avgp1, avgp2, avgp3, avgp4, avgp5, avgp6];
 const scoresexcl = [avgp1, avgp2, avgp3, avgp4, avgp5, avgp6];
-const brancharray = [25, 75, 50, 30, 85, 50, 35]
-const NLarray = [30, 60, 59, 64, 74, 23, 56]
 const scorebars = document.querySelectorAll('.scorebarfill');
 const scorebarsBR = document.querySelectorAll('.scorebarfillbr');
 const scorebarsNL = document.querySelectorAll('.scorebarfillnl');
