@@ -16,6 +16,8 @@ button.addEventListener("click", async () => {
     var totalp6 = 0;
     var avg = 0;
     var selectedAnswers = {};
+    selectedAnswers['branch'] = 'A';
+    selectedAnswers['change'] = 'A';
     var instruments = ['Positieve en constructieve houding/gedrag','Kenmerken team','Team coordinatie en planning', 'Fit voor de toekomst', 'Middelen management', 'Netwerk sterkte']
     var instdescriptions = [
     "Gericht op een positieve, constructieve houding met training in productie, online marketing, personal branding, creativiteit, en design thinking. Een uitgebreid aanbod voor het ontwikkelen van essentiële vaardigheden.",
@@ -76,6 +78,8 @@ $(".page:not(.active)").hide();
             }
             if (selected) {
                 selectedAnswers['date'] = getDate();
+                
+
                 var formData = new FormData(this);
                 var object = {};
                 formData.forEach((value, key) => object[key] = value);
