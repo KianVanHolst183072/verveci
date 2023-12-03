@@ -155,7 +155,6 @@ def get_branch_averages(selected_branch: str = Query(..., min_length=1, max_leng
 
     if branch_result:
         branch_averages = [{
-            "branch": row[0],
             "AvgA": row[1],
             "AvgB": row[2],
             "AvgC": row[3],
