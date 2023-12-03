@@ -84,14 +84,14 @@ function getBranchAverages(selectedBranch) {
         })
         .then(averages => {
             console.log('Overall Averages:', averages);
-            const averages = averages[0];
+            const branch_avg = averages[0];
             // Update brancharray with the averages
-            brancharray[0] = Math.round(averages.AvgA * 25);
-            brancharray[1] = Math.round(averages.AvgB * 25);
-            brancharray[2] = Math.round(averages.AvgC * 25);
-            brancharray[3] = Math.round(averages.AvgD * 25);
-            brancharray[4] = Math.round(averages.AvgE * 25);
-            brancharray[5] = Math.round(averages.AvgF * 25);
+            brancharray[0] = Math.round(branch_avg.AvgA * 25);
+            brancharray[1] = Math.round(branch_avg.AvgB * 25);
+            brancharray[2] = Math.round(branch_avg.AvgC * 25);
+            brancharray[3] = Math.round(branch_avg.AvgD * 25);
+            brancharray[4] = Math.round(branch_avg.AvgE * 25);
+            brancharray[5] = Math.round(branch_avg.AvgF * 25);
         
             console.log('Updated brancharray:', brancharray);
         })
