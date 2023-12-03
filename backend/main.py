@@ -122,26 +122,37 @@ async def store_info(data: DataBase, db: db_dependency):
     db.add(db_data)
     db.commit()
 from sqlalchemy import text
-
 @app.get("/averages")
 def get_branch_averages(selected_branch: str = Query(..., min_length=1, max_length=1, regex="[A-M]")):
     db = SessionLocal()
 
-    sql_query = f"""
+    # Query for total averages
+    total_avg_query = """
+    SELECT AVG(AvgA) as AvgA, AVG(AvgB) as AvgB, AVG(AvgC) as AvgC,
+           AVG(AvgD) as AvgD, AVG(AvgE) as AvgE, AVG(AvgF) as AvgF
+    FROM data;
+    """
+    total_avg_result = db.execute(text(total_avg_query)).fetchone()
+    total_averages = {
+        "AvgA": total_avg_result[0],
+        "AvgB": total_avg_result[1],
+        "AvgC": total_avg_result[2],
+        "AvgD": total_avg_result[3],
+        "AvgE": total_avg_result[4],
+        "AvgF": total_avg_result[5]
+    } if total_avg_result else None
+
+    # Query for the specified branch
+    branch_query = f"""
     SELECT branch, AVG(AvgA) as AvgA, AVG(AvgB) as AvgB, AVG(AvgC) as AvgC,
            AVG(AvgD) as AvgD, AVG(AvgE) as AvgE, AVG(AvgF) as AvgF
     FROM data
-    {'WHERE branch = :branch' if selected_branch else ''}
+    WHERE branch = :branch
     GROUP BY branch;
     """
+    branch_result = db.execute(text(branch_query), {'branch': selected_branch}).fetchall()
 
-    result = db.execute(text(sql_query), {'branch': selected_branch}).fetchall() if selected_branch else db.execute(text(sql_query)).fetchall()
-    db.close()
-
-    if not result:
-        return {"message": "No data available for the selected branch."}
-
-    averages = [{
+    branch_averages = [{
         "branch": row[0],
         "AvgA": row[1],
         "AvgB": row[2],
@@ -149,6 +160,10 @@ def get_branch_averages(selected_branch: str = Query(..., min_length=1, max_leng
         "AvgD": row[4],
         "AvgE": row[5],
         "AvgF": row[6]
-    } for row in result]
-    
-    return averages
+    } for row in branch_result] if branch_result else None
+
+    db.close()
+
+    data = {"total_averages": total_averages, "branch_averages": branch_averages}
+
+    return data

@@ -7,7 +7,7 @@ button.addEventListener("click", async () => {
   document.body.innerHTML = html;
 }); */
     brancharray = [0,0,0,0,0,0,0]
-    NLarray = []
+    NLarray = [0,0,0,0,0,0,0]
     var questions = $(".question").length;
     var totalp1 = 0;
     var totalp2 = 0;
@@ -83,9 +83,22 @@ function getBranchAverages(selectedBranch) {
             }
             return response.json();
         })
-        .then(averages => {
-            console.log('Overall Averages:', averages);
-            const branch_avg = averages[0];
+        .then(data => {
+            
+            const nl_avg = data.total_averages[0];
+            const branch_avg = data.branch_averages[0];
+
+            NLarray[1] = Math.round(nl_avg.AvgA * 25);
+            NLarray[2] = Math.round(nl_avg.AvgB * 25);
+            NLarray[3] = Math.round(nl_avg.AvgC * 25);
+            NLarray[4] = Math.round(nl_avg.AvgD * 25);
+            NLarray[5] = Math.round(nl_avg.AvgE * 25);
+            NLarray[6] = Math.round(nl_avg.AvgF * 25);
+            // Set brancharray[0] to the calculated average
+            const NLsum = NLarray.slice(1).reduce((a, b) => a + b, 0);
+            const NLaverage = Math.round(NLsum / 6);
+            NLarray[0] = NLaverage;
+
             // Update brancharray with the averages
             brancharray[1] = Math.round(branch_avg.AvgA * 25);
             brancharray[2] = Math.round(branch_avg.AvgB * 25);
@@ -93,11 +106,9 @@ function getBranchAverages(selectedBranch) {
             brancharray[4] = Math.round(branch_avg.AvgD * 25);
             brancharray[5] = Math.round(branch_avg.AvgE * 25);
             brancharray[6] = Math.round(branch_avg.AvgF * 25);
-
+            // Set brancharray[0] to the calculated average
             const sum = brancharray.slice(1).reduce((a, b) => a + b, 0);
             const average = Math.round(sum / 6);
-        
-            // Set brancharray[0] to the calculated average
             brancharray[0] = average;
         
             console.log('Updated brancharray:', brancharray);
