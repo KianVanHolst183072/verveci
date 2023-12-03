@@ -122,6 +122,7 @@ async def store_info(data: DataBase, db: db_dependency):
     db.add(db_data)
     db.commit()
 from sqlalchemy import text
+
 @app.get("/averages")
 def get_branch_averages(selected_branch: str = Query(..., min_length=1, max_length=1, regex="[A-M]")):
     db = SessionLocal()
@@ -152,15 +153,18 @@ def get_branch_averages(selected_branch: str = Query(..., min_length=1, max_leng
     """
     branch_result = db.execute(text(branch_query), {'branch': selected_branch}).fetchall()
 
-    branch_averages = [{
-        "branch": row[0],
-        "AvgA": row[1],
-        "AvgB": row[2],
-        "AvgC": row[3],
-        "AvgD": row[4],
-        "AvgE": row[5],
-        "AvgF": row[6]
-    } for row in branch_result] if branch_result else None
+    if branch_result:
+        branch_averages = [{
+            "branch": row[0],
+            "AvgA": row[1],
+            "AvgB": row[2],
+            "AvgC": row[3],
+            "AvgD": row[4],
+            "AvgE": row[5],
+            "AvgF": row[6]
+        } for row in branch_result]
+    else:
+        branch_averages = total_averages
 
     db.close()
 
