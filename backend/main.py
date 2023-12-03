@@ -141,5 +141,14 @@ def get_branch_averages(selected_branch: str = Query(..., min_length=1, max_leng
     if not result:
         return {"message": "No data available for the selected branch."}
 
-    averages = [{"branch": row['branch'], "AvgA": row['AvgA'], "AvgB": row['AvgB'], "AvgC": row['AvgC'], "AvgD": row['AvgD'], "AvgE": row['AvgE'], "AvgF": row['AvgF']} for row in result]
+    averages = [{
+        "branch": row[0],
+        "AvgA": row[1],
+        "AvgB": row[2],
+        "AvgC": row[3],
+        "AvgD": row[4],
+        "AvgE": row[5],
+        "AvgF": row[6]
+    } for row in result]
+    
     return averages
