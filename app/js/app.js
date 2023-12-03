@@ -98,7 +98,6 @@ $(".page:not(.active)").hide();
             }else {
                 // Display an error message or handle the validation as needed
                 alert("Selecteer uw rol binnen het bedrijf voor het indienen.");
-                return; // Prevent the form from submitting if validation fails
             }
         } else {
             message = 'Beantwoord alstublieft alle vragen voor uw analyse';
