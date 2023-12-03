@@ -8,7 +8,7 @@ from database import engine, SessionLocal
 from sqlalchemy.orm import Session
 from datetime import datetime
 from fastapi import FastAPI, Query
-from models import Data
+from models import Data, Average
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -125,10 +125,10 @@ async def store_info(data: DataBase, db: db_dependency):
 @app.get("/averages")
 def get_branch_averages(selected_branch: str = Query(..., min_length=1, max_length=1, regex="[A-M]")):
     db = SessionLocal()
-    branch_data = db.query(Data).filter(Data.branch == selected_branch).all()
+    branch_data = db.query(Average).filter(Average.branch == selected_branch).all()
     
     if not branch_data:
-        all_data = db.query(Data).all()
+        all_data = db.query(Average).all()
         db.close()
         
         if not all_data:

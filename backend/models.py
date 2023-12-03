@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Integer, String, Column, Date
+from sqlalchemy import Boolean, Integer, String, Column, Date, Float
 from database import Base
 
 class Data(Base):
@@ -71,3 +71,23 @@ class Data(Base):
     G1 = Column(Integer)
     G2 = Column(Integer)
     G3 = Column(Integer)
+
+
+class Average(Base):
+    __tablename__ = 'data'
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    date = Column(String(10))
+    name = Column(String(50))
+    mail = Column(String(50))
+    company = Column(String(50))
+    branch = Column(String(1))
+    role = Column(String(3))
+    lang = Column(String(2))
+
+    AvgA = Column(Float)
+    AvgB = Column(Float)
+    AvgC = Column(Float)
+    AvgD = Column(Float)
+    AvgE = Column(Float)
+    AvgF = Column(Float)
