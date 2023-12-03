@@ -6,7 +6,7 @@ button.addEventListener("click", async () => {
   const html = await response.text();
   document.body.innerHTML = html;
 }); */
-    brancharray = [0,0,0,0,0,0]
+    brancharray = [0,0,0,0,0,0,0]
     NLarray = []
     var questions = $(".question").length;
     var totalp1 = 0;
@@ -86,12 +86,18 @@ function getBranchAverages(selectedBranch) {
             console.log('Overall Averages:', averages);
             const branch_avg = averages[0];
             // Update brancharray with the averages
-            brancharray[0] = Math.round(branch_avg.AvgA * 25);
-            brancharray[1] = Math.round(branch_avg.AvgB * 25);
-            brancharray[2] = Math.round(branch_avg.AvgC * 25);
-            brancharray[3] = Math.round(branch_avg.AvgD * 25);
-            brancharray[4] = Math.round(branch_avg.AvgE * 25);
-            brancharray[5] = Math.round(branch_avg.AvgF * 25);
+            brancharray[1] = Math.round(branch_avg.AvgA * 25);
+            brancharray[2] = Math.round(branch_avg.AvgB * 25);
+            brancharray[3] = Math.round(branch_avg.AvgC * 25);
+            brancharray[4] = Math.round(branch_avg.AvgD * 25);
+            brancharray[5] = Math.round(branch_avg.AvgE * 25);
+            brancharray[6] = Math.round(branch_avg.AvgF * 25);
+
+            const sum = brancharray.slice(1).reduce((a, b) => a + b, 0);
+            const average = Math.round(sum / 6);
+        
+            // Set brancharray[0] to the calculated average
+            brancharray[0] = average;
         
             console.log('Updated brancharray:', brancharray);
         })
