@@ -39,14 +39,14 @@ button.addEventListener("click", async () => {
 
     let currentPage = 0; // set current page to 0 (page1)
 
-    document.addEventListener('DOMContentLoaded', function() {
+    function getDate() {
         var today = new Date();
         var day = String(today.getDate()).padStart(2, '0');
         var month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
         var year = today.getFullYear();
         var formattedDate = day + '/' + month + '/' + year;
-        selectedAnswers[date] = formattedDate;
-    });
+        return formattedDate
+    };
     
 
 document.getElementById('selectChange').addEventListener('change', function() {
@@ -75,7 +75,7 @@ $(".page:not(.active)").hide();
                 }
             }
             if (selected) {
-
+                selectedAnswers[date] = getDate();
                 var formData = new FormData(this);
                 var object = {};
                 formData.forEach((value, key) => object[key] = value);
