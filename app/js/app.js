@@ -18,6 +18,7 @@ button.addEventListener("click", async () => {
     var selectedAnswers = {};
     selectedAnswers['branch'] = 'A';
     selectedAnswers['change'] = 'A';
+    let selectedBranch = 'A';
     var instruments = ['Positieve en constructieve houding/gedrag','Kenmerken team','Team coordinatie en planning', 'Fit voor de toekomst', 'Middelen management', 'Netwerk sterkte']
     var instdescriptions = [
     "Gericht op een positieve, constructieve houding met training in productie, online marketing, personal branding, creativiteit, en design thinking. Een uitgebreid aanbod voor het ontwikkelen van essentiële vaardigheden.",
@@ -39,7 +40,7 @@ button.addEventListener("click", async () => {
 
 // 'HOME' PAGE WEERGEVEN
 
-    let currentPage = 0; // set current page to 0 (page1)
+    let currentPage = 11; // set current page to 0 (page1)
 
     function getDate() {
         var today = new Date();
@@ -57,9 +58,40 @@ document.getElementById('selectChange').addEventListener('change', function() {
     selectedAnswers[key] = selectedOption; // Update the selectedAnswers object
 });
 
+document.getElementById('selectBranch').addEventListener('change', function() {
+    const selectedOption = this.value; 
+    const key = this.name;
+    selectedBranch = selectedOption; 
+    console.log(selectedBranch); // Note the corrected variable name
+});
+
+
 $(".page").eq(currentPage).addClass("active"); // add active class to current page
 $(".page.active").show();
 $(".page:not(.active)").hide();
+
+function getBranchAverages(selectedBranch) {
+    // Define the endpoint URL
+    const endpoint = `/averages?selected_branch=${selectedBranch}`;
+
+    // Send a GET request to the endpoint
+    fetch(endpoint)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`Network response was not ok: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then((data) => {
+            // Handle the response data here
+            console.log(data);
+            // You can now use the data in your web app
+        })
+        .catch((error) => {
+            // Handle errors here
+            console.error(error);
+        });
+}
 
 
     document.getElementById('myForm').addEventListener('submit', function (e) {
@@ -99,6 +131,7 @@ $(".page:not(.active)").hide();
                     .then(response => response.json())
                     .then(data => {
                         console.log(data);
+                        getBranchAverages(selectedBranch);
                         toFinalPage();
                     })
                     .catch(error => console.error(error));
@@ -255,7 +288,7 @@ buttons[i].style.display = "block";
 function updateScorebars() {
 const scores = [avgtotal, avgp1, avgp2, avgp3, avgp4, avgp5, avgp6];
 const scoresexcl = [avgp1, avgp2, avgp3, avgp4, avgp5, avgp6];
-const filmarray = [25, 75, 50, 30, 85, 50, 35]
+const brancharray = [25, 75, 50, 30, 85, 50, 35]
 const NLarray = [30, 60, 59, 64, 74, 23, 56]
 const scorebars = document.querySelectorAll('.scorebarfill');
 const scorebarsBR = document.querySelectorAll('.scorebarfillbr');
@@ -277,12 +310,12 @@ scoretext.forEach((scoretext, index) => {
 
 
 scorebarsBR.forEach((scorebarBR, index) => {
-    const value = filmarray[index];
+    const value = brancharray[index];
     scorebarBR.style.width = `${value}%`;
 })
 
 scoretextBR.forEach((scoretextBR, index) => {
-    const value = filmarray[index];
+    const value = brancharray[index];
     scoretextBR.innerHTML= `${value}`; 
 })
 

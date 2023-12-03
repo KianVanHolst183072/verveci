@@ -120,3 +120,60 @@ async def store_info(data: DataBase, db: db_dependency):
     # Add and commit the record to the database
     db.add(db_data)
     db.commit()
+
+from fastapi import FastAPI, Query
+from sqlalchemy.orm import Session
+from database import SessionLocal
+from models import Data
+
+app = FastAPI()
+
+@app.get("/averages")
+def get_branch_averages(selected_branch: str = Query(..., min_length=1, max_length=1, regex="[A-M]")):
+    db = SessionLocal()
+
+    branch_data = db.query(Data).filter(Data.branch == selected_branch).all()
+    
+    if not branch_data:
+        all_data = db.query(Data).all()
+        db.close()
+        
+        if not all_data:
+            return {"message": "No data available."}
+        
+        total_A = sum(item.AvgA for item in all_data) / len(all_data)
+        total_B = sum(item.AvgB for item in all_data) / len(all_data)
+        total_C = sum(item.AvgC for item in all_data) / len(all_data)
+        total_D = sum(item.AvgD for item in all_data) / len(all_data)
+        total_E = sum(item.AvgE for item in all_data) / len(all_data)
+        total_F = sum(item.AvgE for item in all_data) / len(all_data)
+        
+        averages = {
+            "branch": "All",
+            "Average_A": total_A,
+            "Average_B": total_B,
+            "Average_C": total_C,
+            "Average_D": total_D,
+            "Average_E": total_E,
+            "Average_F": total_F,
+        }
+    else:
+        total_A = sum(item.AvgA for item in branch_data) / len(branch_data)
+        total_B = sum(item.AvgB for item in branch_data) / len(branch_data)
+        total_C = sum(item.AvgC for item in branch_data) / len(branch_data)
+        total_D = sum(item.AvgD for item in branch_data) / len(branch_data)
+        total_E = sum(item.AvgE for item in branch_data) / len(branch_data)
+        total_F = sum(item.AvgF for item in branch_data) / len(branch_data)
+
+        averages = {
+            "branch": selected_branch,
+            "Average_A": total_A,
+            "Average_B": total_B,
+            "Average_C": total_C,
+            "Average_D": total_D,
+            "Average_E": total_E,
+            "Average_F": total_F,
+        }
+    
+    db.close()
+    return averages
