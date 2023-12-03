@@ -122,8 +122,6 @@ async def store_info(data: DataBase, db: db_dependency):
     db.commit()
 
 from fastapi import FastAPI, Query
-from sqlalchemy.orm import Session
-from database import SessionLocal
 from models import Data
 
 app = FastAPI()
