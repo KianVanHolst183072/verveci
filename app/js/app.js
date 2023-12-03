@@ -84,7 +84,7 @@ function getBranchAverages(selectedBranch) {
         })
         .then(averages => {
             console.log('Overall Averages:', averages);
-        
+            const averages = averages[0];
             // Update brancharray with the averages
             brancharray[0] = Math.round(averages.AvgA * 25);
             brancharray[1] = Math.round(averages.AvgB * 25);
