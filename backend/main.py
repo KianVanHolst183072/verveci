@@ -19,7 +19,6 @@ app.mount("/static", StaticFiles(directory="/usr/src/app/app"), name="static")
 async def root():
     return RedirectResponse(url="/docs")
 
-
 origins = [
     "http://localhost",
     "http://localhost:80",

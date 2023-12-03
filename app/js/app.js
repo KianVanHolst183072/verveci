@@ -69,7 +69,7 @@ $(".page").eq(currentPage).addClass("active"); // add active class to current pa
 $(".page.active").show();
 $(".page:not(.active)").hide();
 
-/* function getBranchAverages(selectedBranch) {
+function getBranchAverages(selectedBranch) {
     // Define the endpoint URL
     const endpoint = `/averages?selected_branch=${selectedBranch}`;
 
@@ -90,7 +90,7 @@ $(".page:not(.active)").hide();
             // Handle errors here
             console.error(error);
         });
-} */
+}
 
 
     document.getElementById('myForm').addEventListener('submit', function (e) {
