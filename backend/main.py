@@ -6,6 +6,7 @@ from typing import Annotated
 import models
 from database import engine, SessionLocal
 from sqlalchemy.orm import Session
+from sqlalchemy import func
 from datetime import datetime
 from fastapi import FastAPI, Query
 from models import Data, Average
@@ -36,21 +37,6 @@ app.add_middleware(
 )
 
 models.Base.metadata.create_all(bind=engine)
-class AverageBase(BaseModel):
-    date: str
-    name: str
-    mail: str
-    company: str
-    branch: str
-    role: str
-    lang: str
-
-    AvgA: float
-    AvgB: float
-    AvgC: float
-    AvgD: float
-    AvgE: float
-    AvgF: float
 
 class DataBase(BaseModel):
     date: str
@@ -135,52 +121,25 @@ async def store_info(data: DataBase, db: db_dependency):
     # Add and commit the record to the database
     db.add(db_data)
     db.commit()
+from sqlalchemy import text
 
 @app.get("/averages")
 def get_branch_averages(selected_branch: str = Query(..., min_length=1, max_length=1, regex="[A-M]")):
     db = SessionLocal()
-    branch_data = db.query(Average).filter(Average.branch == selected_branch).all()
-    
-    if not branch_data:
-        all_data = db.query(Average).all()
-        db.close()
-        
-        if not all_data:
-            return {"message": "No data available."}
-        
-        total_A = sum(item.AvgA for item in all_data) / len(all_data)
-        total_B = sum(item.AvgB for item in all_data) / len(all_data)
-        total_C = sum(item.AvgC for item in all_data) / len(all_data)
-        total_D = sum(item.AvgD for item in all_data) / len(all_data)
-        total_E = sum(item.AvgE for item in all_data) / len(all_data)
-        total_F = sum(item.AvgE for item in all_data) / len(all_data)
-        
-        averages = {
-            "branch": "All",
-            "Average_A": total_A,
-            "Average_B": total_B,
-            "Average_C": total_C,
-            "Average_D": total_D,
-            "Average_E": total_E,
-            "Average_F": total_F,
-        }
-    else:
-        total_A = sum(item.AvgA for item in branch_data) / len(branch_data)
-        total_B = sum(item.AvgB for item in branch_data) / len(branch_data)
-        total_C = sum(item.AvgC for item in branch_data) / len(branch_data)
-        total_D = sum(item.AvgD for item in branch_data) / len(branch_data)
-        total_E = sum(item.AvgE for item in branch_data) / len(branch_data)
-        total_F = sum(item.AvgF for item in branch_data) / len(branch_data)
 
-        averages = {
-            "branch": selected_branch,
-            "Average_A": total_A,
-            "Average_B": total_B,
-            "Average_C": total_C,
-            "Average_D": total_D,
-            "Average_E": total_E,
-            "Average_F": total_F,
-        }
-    
+    sql_query = f"""
+    SELECT branch, AVG(AvgA) as AvgA, AVG(AvgB) as AvgB, AVG(AvgC) as AvgC,
+           AVG(AvgD) as AvgD, AVG(AvgE) as AvgE, AVG(AvgF) as AvgF
+    FROM data
+    {'WHERE branch = :branch' if selected_branch else ''}
+    GROUP BY branch;
+    """
+
+    result = db.execute(text(sql_query), {'branch': selected_branch}).fetchall() if selected_branch else db.execute(text(sql_query)).fetchall()
     db.close()
+
+    if not result:
+        return {"message": "No data available for the selected branch."}
+
+    averages = [{"branch": row['branch'], "AvgA": row['AvgA'], "AvgB": row['AvgB'], "AvgC": row['AvgC'], "AvgD": row['AvgD'], "AvgE": row['AvgE'], "AvgF": row['AvgF']} for row in result]
     return averages

@@ -72,22 +72,3 @@ class Data(Base):
     G1 = Column(Integer)
     G2 = Column(Integer)
     G3 = Column(Integer)
-
-    average = relationship('Average', uselist=False, back_populates='data')
-
-
-class Average(Base):
-    __tablename__ = 'average'
-
-    id = Column(Integer, primary_key=True, index=True)
-    branch = Column(String(1))
-    AvgA = Column(Float)
-    AvgB = Column(Float)
-    AvgC = Column(Float)
-    AvgD = Column(Float)
-    AvgE = Column(Float)
-    AvgF = Column(Float)
-
-    # Define a one-to-one relationship with the Data model
-    data_id = Column(Integer, ForeignKey('data.id'))
-    data = relationship('Data', back_populates='average')
