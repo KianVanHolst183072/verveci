@@ -116,15 +116,7 @@ p  {
   order: 1;
 }
 
-.scorebar {
-  background-color:#e0e0e0;
-  border-radius: 3px;
-  height: 10px;
-  width: 90%;
-  margin-bottom: 0px;
-  margin-top: 0px;
-  display: inline-block;
-}
+
 
 .scorebarfill{
   display: flex;
@@ -133,8 +125,8 @@ p  {
   border-radius: 3px;
   width: 20%;
   height:100%;
-  transition: 0.25s ease 0.1s;
-
+  z-index: 2;
+  position: relative;
 }
 
 .scorebarfillbr{
@@ -144,8 +136,8 @@ p  {
   border-radius: 3px;
   width: 20%;
   height:100%;
-  transition: 0.5s ease 0.3s;
-
+  z-index: 2;
+  position: relative;
 }
 .scorebarfillnl{
   display: flex;
@@ -154,10 +146,22 @@ p  {
   border-radius: 3px;
   width: 20%;
   height:100%;
-  transition: 0.5s ease 0.3s;
+  z-index: 2;
+  position: relative;
 
 }
 
+.scorebar {
+  background-color:#e0e0e0;
+  border-radius: 3px;
+  height: 10px;
+  width: 90%;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  display: inline-block;
+  z-index: 1;
+  position: relative;
+}
 
 
 
@@ -337,7 +341,7 @@ div.xpl ul {
 
 /* UTILITIES */
 .container {
-  width: 100vw;
+  width: 90vw;
   height: 100%;
   align-items: start;
   max-width: 80rem;
@@ -345,9 +349,31 @@ div.xpl ul {
   background-color: #eeeff0;
 }
 
+.download-mode .container {
+  max-width: 95;
+}
+
+
 .container > * {
   width: 100%;
 }
+.progressmade {
+  width: 100%;
+  align-items: start;
+  border-radius: 1px;
+  height:5px;
+  background-color:#00406B;
+  color: #e2e2e2;
+  font-family: 'Courier New', Courier, monospace;
+  transition: 0.5s ease 0.2s;
+  position:relative;
+  z-index:2;
+}
+
+.no-transition {
+  transition: none !important;
+}
+
 .progress {
   width: 100%;
   align-items: start;
@@ -358,18 +384,11 @@ div.xpl ul {
   background-color:#b9b9b9;
   color: #e2e2e2;
   font-family: 'Courier New', Courier, monospace;
+  position:relative;
+  z-index:1;
 }
 
-.progressmade {
-  width: 100%;
-  align-items: start;
-  border-radius: 1px;
-  height:5px;
-  background-color:#00406B;
-  color: #e2e2e2;
-  font-family: 'Courier New', Courier, monospace;
-  transition: 0.5s ease 0.2s;
-}
+
 
 .flex-column {
   display:flex;

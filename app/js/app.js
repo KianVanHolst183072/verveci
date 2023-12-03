@@ -36,6 +36,22 @@ button.addEventListener("click", async () => {
 ];
 
 
+// FUNCTIES
+const buttons = document.getElementsByClassName("button");
+
+// Function to hide all buttons
+function hideButtons() {
+for (let i = 0; i < buttons.length; i++) {
+buttons[i].style.display = "none";
+}
+}
+
+// Function to unhide all buttons
+function showButtons() {
+for (let i = 0; i < buttons.length; i++) {
+buttons[i].style.display = "block";
+}
+}
     const progressMade = document.querySelector('.progressmade')
     progressMade.style.maxWidth = `2%`;
 
@@ -216,59 +232,38 @@ function toFinalPage(){
         $(".page:not(.active)").hide();
 }
 
+document.getElementById('downloadBtn').addEventListener('click', function () {
+    // Select buttons to hide
+    const buttonsToHide = document.querySelectorAll('.download, .dev');
+    const progressMadeElement = document.querySelector('.progressmade');
 
-// DOWNLOAD KNOP
-$('#downloadBtn').on('click', function(){
-    $(".page").eq(currentPage + 1).addClass("active"); // add active class to new current page
-    $(".page.active").show();
-    $(".page:not(.active)").hide();
-    hideButtons();
-    window.print();
-    showButtons();
-    $(".page").eq(currentPage + 1).removeClass("active")
-    $(".page.active").show();
-    $(".page:not(.active)").hide();
-})
-
-function printContent() {
-        // Get the screenshot of the entire container
-        var printContainer = document.getElementById("results");
-        var htmlContent = printContainer.innerHTML;
-        var cssContent = window.getComputedStyle(printContainer);
-        var pdfDoc = new jsPDF();
-        
-        pdfDoc.fromHTML(htmlContent, 15, 15, {
-            'width': 170,
-            'height': 220
-        });
-        pdfDoc.addCSS(cssContent);
-        pdfDoc.save('VeerkrachtAnalyse.pdf')
-        var link = document.createElement('a');
-        link.href = 'data:application/pdf;base64,'+ btoa(pdfDoc.output());
-        link.setAttribute('download', 'VeerkrachtAnalyse.pdf');
-        link.click();
-    }
-
-
-    document.getElementById('downloaBtn').addEventListener('click', function() {
-        const element = document.getElementById('export-container');
-        const options = {
-            margin: 10,
-            filename: 'exported-document.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2 },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-        };
-
-        html2pdf()
-            .from(element)
-            .set(options)
-            .outputPdf()
-            .then(function(pdf) {
-                // The PDF has been generated. You can save it, display it, or do anything else you want.
-                pdf.save();
-            });
+    // Add the class no-transition to the element
+    progressMadeElement.classList.add('no-transition');
+    // Hide the selected buttons
+    buttonsToHide.forEach(button => {
+        button.style.display = 'none';
     });
+
+    var element = document.getElementById('content-to-download');
+    html2pdf(element, {
+        margin:       10,
+        filename:     'Verveci-Resillience-Analysis.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 3}, // Capture entire content area
+        jsPDF:        { unit: 'mm', format: [250,300], orientation: 'portrait' } // Use A4 format
+    }).then(() => {
+        // Add a timeout of 550 ms before showing the buttons again
+        setTimeout(() => {
+            buttonsToHide.forEach(button => {
+                button.style.display = 'block';
+            });
+        }, 550);
+    });
+});
+
+
+
+
 
 // ANTWOORDEN SELECTIE
 // FUNCTIES
@@ -293,22 +288,6 @@ progressMade.style.maxWidth = `${progress}%`;
 });
 
 
-// FUNCTIES
-const buttons = document.getElementsByClassName("button");
-
-// Function to hide all buttons
-function hideButtons() {
-for (let i = 0; i < buttons.length; i++) {
-buttons[i].style.display = "none";
-}
-}
-
-// Function to unhide all buttons
-function showButtons() {
-for (let i = 0; i < buttons.length; i++) {
-buttons[i].style.display = "block";
-}
-}
 // RESULTAAT -> SCOREBARS
 function updateScorebars() {
 const scores = [avgtotal, avgp1, avgp2, avgp3, avgp4, avgp5, avgp6];
