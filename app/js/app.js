@@ -1,18 +1,10 @@
-/* // ENGLISH BUTTON
+
+// ENGLISH BUTTON
 const button = document.getElementById("engBtn");
 button.addEventListener("click", async () => {
   const response = await fetch("index_eng.html");
   const html = await response.text();
   document.body.innerHTML = html;
-}); */
-
-document.addEventListener('DOMContentLoaded', function() {
-    var today = new Date();
-    var day = String(today.getDate()).padStart(2, '0');
-    var month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
-    var year = today.getFullYear();
-    var formattedDate = day + '/' + month + '/' + year;
-    document.getElementById('date').value = formattedDate;
 });
 
     var questions = $(".question").length;
@@ -44,7 +36,16 @@ document.addEventListener('DOMContentLoaded', function() {
     progressMade.style.maxWidth = `2%`;
 
 // 'HOME' PAGE WEERGEVEN
-let currentPage = 0; // set current page to 0 (page1)
+
+    let currentPage = 0; // set current page to 0 (page1)
+
+document.addEventListener('DOMContentLoaded', function() {
+    var today = new Date();
+    var day = String(today.getDate()).padStart(2, '0');
+    var month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+    var year = today.getFullYear();
+    document.getElementById('date').value = day + '/' + month + '/' + year;
+});
 
 document.getElementById('selectChange').addEventListener('change', function() {
     const selectedOption = this.value; // Get the value of the selected option
@@ -72,6 +73,7 @@ $(".page:not(.active)").hide();
                 }
             }
             if (selected) {
+
                 var formData = new FormData(this);
                 var object = {};
                 formData.forEach((value, key) => object[key] = value);
@@ -80,11 +82,9 @@ $(".page:not(.active)").hide();
                 Object.assign(object, selectedAnswers);
 
                 var json = JSON.stringify(object);
-                // Set 127.0.0.1:80 for docker
-                console.log(json)
+
                 fetch('http://127.0.0.1:80/data/', {
                     method: 'POST',
-                    mode: 'no-cors',
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -213,7 +213,7 @@ var pageId = $(this).parent().parent().attr('id');
 var questionName = $(this).attr('name');
 var answerValue = $(this).attr('value');
 selectedAnswers[questionName] = answerValue;
-// console.log(selectedAnswers)
+console.log(selectedAnswers)
 if($(this).parent().find('.selected').length > 0) {
     var oldValue = parseInt($(this).parent().find('.selected').attr('value'), 10);
     window['total' + pageId] -= oldValue;

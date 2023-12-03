@@ -11,7 +11,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-#DOCKER 
 app.mount("/static", StaticFiles(directory="/usr/src/app/app"), name="static")
 
 @app.get("/", include_in_schema=False)
@@ -29,8 +28,8 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # List of allowed origins
-    allow_credentials=False,
+    allow_origins=origins,  # List of allowed origins
+    allow_credentials=True,
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],  # Allows all headers
 )
