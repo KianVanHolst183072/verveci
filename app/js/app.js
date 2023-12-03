@@ -75,7 +75,7 @@ $(".page:not(.active)").hide();
                 }
             }
             if (selected) {
-                selectedAnswers[date] = getDate();
+                selectedAnswers['date'] = getDate();
                 var formData = new FormData(this);
                 var object = {};
                 formData.forEach((value, key) => object[key] = value);
