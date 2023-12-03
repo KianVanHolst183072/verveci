@@ -35,58 +35,77 @@ button.addEventListener("click", async () => {
     const progressMade = document.querySelector('.progressmade')
     progressMade.style.maxWidth = `2%`;
 
-// 'HOME' PAGE WEERGEVEN - vraag voor hans en frank (telt elke factor mee of elk niveau mee)
+// 'HOME' PAGE WEERGEVEN
 
     let currentPage = 0; // set current page to 0 (page1)
 
-    document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     var today = new Date();
     var day = String(today.getDate()).padStart(2, '0');
     var month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
     var year = today.getFullYear();
-
     document.getElementById('date').value = day + '/' + month + '/' + year;
 });
 
 document.getElementById('selectChange').addEventListener('change', function() {
     const selectedOption = this.value; // Get the value of the selected option
     const key = this.name; // Use the name attribute of the select as the key
-
     selectedAnswers[key] = selectedOption; // Update the selectedAnswers object
-
-    console.log(selectedAnswers); // Log the updated object for verification
 });
 
 $(".page").eq(currentPage).addClass("active"); // add active class to current page
 $(".page.active").show();
 $(".page:not(.active)").hide();
 
-document.getElementById('myForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    var formData = new FormData(this);
-    var object = {};
-    formData.forEach((value, key) => object[key] = value);
+if ($('.selected').length === 44) {
+    document.getElementById('myForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        var object = {};
+        formData.forEach((value, key) => object[key] = value);
 
-    // Merge the selectedAnswers with the form data
-    Object.assign(object, selectedAnswers);
+        // Merge the selectedAnswers with the form data
+        Object.assign(object, selectedAnswers);
 
-    var json = JSON.stringify(object);
+        var json = JSON.stringify(object);
 
-    fetch('http://127.0.0.1:80/data/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: json
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        toFinalPage();
-    })
-    .catch(error => console.error(error));
+        fetch('http://127.0.0.1:80/data/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: json
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                toFinalPage();
+            })
+            .catch(error => console.error(error));
 
-});
+        // Add the code for radio button validation here
+        const radioButtons = document.querySelectorAll('input[name="role"]');
+        let selected = false;
+
+        // Check if at least one radio button is selected
+        for (const radioButton of radioButtons) {
+            if (radioButton.checked) {
+                selected = true;
+                break;
+            }
+        }
+
+        if (!selected) {
+            // Display an error message or handle the validation as needed
+            alert("Please select a role before submitting.");
+            return; // Prevent the form from submitting if validation fails
+        }
+    });
+} else {
+    message = 'Beantwoord alstublieft alle vragen voor uw analyse';
+    alert(message);
+}
+
 
 // BUTTONS
 // TERUG KNOP
@@ -97,6 +116,7 @@ $(".terug").on("click", () => {
     $(".page.active").show();
     $(".page:not(.active)").hide();
 });
+
 // VOLGENDE KNOP
 $(".volgende").on("click", () => {
     $(".page").eq(currentPage).removeClass("active"); // remove active class from current page
@@ -106,10 +126,8 @@ $(".volgende").on("click", () => {
     $(".page:not(.active)").hide();
 });
 
-
 // FINAL SUBMIT KNOP  
 function toFinalPage(){
-    if($('.selected').length === 44){
         avgp1 = Math.round((totalp1/40)*100);
         avgp2 = Math.round((totalp2/40)*100);
         avgp3 = Math.round((totalp3/12)*100);
@@ -131,11 +149,6 @@ function toFinalPage(){
         console.log(FormData)
         $(".page.active").show();
         $(".page:not(.active)").hide();
-        
-    }else{
-        message = 'Beantwoord alstublieft alle vragen voor uw analyse';
-        alert(message);
-    }
 }
 
 
@@ -193,19 +206,6 @@ function printContent() {
     });
 
 // ANTWOORDEN SELECTIE
-$('.answerr').on('click', function(){
-    var pageId = $(this).parent().parent().attr('id');
-    if($(this).parent().find('.selected').length > 0) {
-        window['total' + pageId] -=$(this).parent().find('.selected').data('value');
-        $(this).parent().find('.selected').removeClass('selected');
-    }
-    progress = ($('.selected').length/45)*100
-    progressMade.style.maxWidth = `${progress}%`;
-    console.log(selectedAnswers)
-    $(this).addClass('selected');
-    window['total' + pageId] += $(this).data('value');
-})
-
 // FUNCTIES
 $('.answer').on('click', function(){
 var pageId = $(this).parent().parent().attr('id');
@@ -228,37 +228,8 @@ progressMade.style.maxWidth = `${progress}%`;
 });
 
 
-$('.answeer').on('click', function() {
-var pageId = $(this).parent().parent().attr('id');
-var questionName = $(this).attr('name');
-var answerValue = $(this).data('value');
-
-// Update selected answers
-selectedAnswers[questionName] = answerValue;
-console.log(selectedAnswers)
-// Existing logic to handle UI changes
-if($(this).parent().find('.selected').length > 0) {
-    window['total' + pageId] -= $(this).parent().find('.selected').data('value');
-    $(this).parent().find('.selected').removeClass('selected');
-}
-
-$(this).addClass('selected');
-window['total' + pageId] += answerValue;
-
-// Update progress
-var progress = ($('.selected').length / 45) * 100;
-progressMade.style.maxWidth = `${progress}%`;
-});
-
-
-
-
 // FUNCTIES
 const buttons = document.getElementsByClassName("button");
-
-// Function to generate unique user ID
-
-
 
 // Function to hide all buttons
 function hideButtons() {
