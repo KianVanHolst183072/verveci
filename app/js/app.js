@@ -152,8 +152,6 @@ function getBranchAverages(selectedBranch) {
             }
             if (selected) {
                 selectedAnswers['date'] = getDate();
-                
-
                 var formData = new FormData(this);
                 var object = {};
                 formData.forEach((value, key) => object[key] = value);
@@ -221,7 +219,7 @@ function toFinalPage(){
         currentPage = currentPage + 1; // move to next page
         $(".page").eq(currentPage).addClass("active"); // add active class to new current page
 
-        updateScorebars();
+        
         const bedrijfInput = document.getElementById("bedrijf");
         let bedrijfnaam = document.getElementById('bedrijfnaam');
         bedrijfnaam.innerHTML = bedrijfInput.value;
@@ -230,6 +228,7 @@ function toFinalPage(){
         console.log(FormData)
         $(".page.active").show();
         $(".page:not(.active)").hide();
+        updateScorebars();
 }
 
 document.getElementById('downloadBtn').addEventListener('click', function () {
