@@ -60,7 +60,6 @@ document.getElementById('selectChange').addEventListener('change', function() {
 
 document.getElementById('selectBranch').addEventListener('change', function() {
     const selectedOption = this.value; 
-    const key = this.name;
     selectedBranch = selectedOption; 
     console.log(selectedBranch); // Note the corrected variable name
 });
@@ -70,7 +69,7 @@ $(".page").eq(currentPage).addClass("active"); // add active class to current pa
 $(".page.active").show();
 $(".page:not(.active)").hide();
 
-function getBranchAverages(selectedBranch) {
+/* function getBranchAverages(selectedBranch) {
     // Define the endpoint URL
     const endpoint = `/averages?selected_branch=${selectedBranch}`;
 
@@ -91,7 +90,7 @@ function getBranchAverages(selectedBranch) {
             // Handle errors here
             console.error(error);
         });
-}
+} */
 
 
     document.getElementById('myForm').addEventListener('submit', function (e) {
@@ -131,7 +130,6 @@ function getBranchAverages(selectedBranch) {
                     .then(response => response.json())
                     .then(data => {
                         console.log(data);
-                        getBranchAverages(selectedBranch);
                         toFinalPage();
                     })
                     .catch(error => console.error(error));
