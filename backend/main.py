@@ -134,14 +134,14 @@ def get_branch_averages(selected_branch: str = Query(..., min_length=1, max_leng
     FROM data;
     """
     total_avg_result = db.execute(text(total_avg_query)).fetchone()
-    total_averages = {
+    total_averages = [{
         "AvgA": total_avg_result[0],
         "AvgB": total_avg_result[1],
         "AvgC": total_avg_result[2],
         "AvgD": total_avg_result[3],
         "AvgE": total_avg_result[4],
         "AvgF": total_avg_result[5]
-    } if total_avg_result else None
+    } if total_avg_result else None]
 
     # Query for the specified branch
     branch_query = f"""
