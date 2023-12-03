@@ -45,7 +45,7 @@ button.addEventListener("click", async () => {
         var month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
         var year = today.getFullYear();
         var formattedDate = day + '/' + month + '/' + year;
-        document.getElementById('date').value = formattedDate;
+        selectedAnswers[date] = formattedDate;
     });
     
 
