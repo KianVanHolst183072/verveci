@@ -1,11 +1,11 @@
 
-// ENGLISH BUTTON
+/* // ENGLISH BUTTON
 const button = document.getElementById("engBtn");
 button.addEventListener("click", async () => {
   const response = await fetch("index_eng.html");
   const html = await response.text();
   document.body.innerHTML = html;
-});
+}); */
 
     var questions = $(".question").length;
     var totalp1 = 0;
@@ -39,13 +39,15 @@ button.addEventListener("click", async () => {
 
     let currentPage = 0; // set current page to 0 (page1)
 
-document.addEventListener('DOMContentLoaded', function() {
-    var today = new Date();
-    var day = String(today.getDate()).padStart(2, '0');
-    var month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
-    var year = today.getFullYear();
-    document.getElementById('date').value = day + '/' + month + '/' + year;
-});
+    document.addEventListener('DOMContentLoaded', function() {
+        var today = new Date();
+        var day = String(today.getDate()).padStart(2, '0');
+        var month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+        var year = today.getFullYear();
+        var formattedDate = day + '/' + month + '/' + year;
+        document.getElementById('date').value = formattedDate;
+    });
+    
 
 document.getElementById('selectChange').addEventListener('change', function() {
     const selectedOption = this.value; // Get the value of the selected option
