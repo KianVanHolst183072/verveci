@@ -59,6 +59,7 @@ $(".page:not(.active)").hide();
 
 
     document.getElementById('myForm').addEventListener('submit', function (e) {
+        e.preventDefault();
         if ($('.selected').length === 44) {
             // Add the code for radio button validation here
             const radioButtons = document.querySelectorAll('input[name="role"]');
@@ -72,7 +73,7 @@ $(".page:not(.active)").hide();
                 }
             }
             if (selected) {
-                e.preventDefault();
+
                 var formData = new FormData(this);
                 var object = {};
                 formData.forEach((value, key) => object[key] = value);
@@ -98,7 +99,6 @@ $(".page:not(.active)").hide();
             }else {
                 // Display an error message or handle the validation as needed
                 alert("Selecteer uw rol binnen het bedrijf voor het indienen.");
-                return false;
             }
         } else {
             message = 'Beantwoord alstublieft alle vragen voor uw analyse';
