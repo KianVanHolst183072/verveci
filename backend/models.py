@@ -75,8 +75,6 @@ class Data(Base):
 
 class Average(Base):
     __tablename__ = 'data'
-
-    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     date = Column(String(10))
     name = Column(String(50))
     mail = Column(String(50))

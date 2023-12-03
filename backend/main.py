@@ -36,7 +36,21 @@ app.add_middleware(
 )
 
 models.Base.metadata.create_all(bind=engine)
+class AverageBase(BaseModel):
+    date: str
+    name: str
+    mail: str
+    company: str
+    branch: str
+    role: str
+    lang: str
 
+    AvgA: float
+    AvgB: float
+    AvgC: float
+    AvgD: float
+    AvgE: float
+    AvgF: float
 
 class DataBase(BaseModel):
     date: str
