@@ -124,7 +124,7 @@ async def store_info(data: DataBase, db: db_dependency):
 
 @app.get("/averages")
 def get_branch_averages(selected_branch: str = Query(..., min_length=1, max_length=1, regex="[A-M]")):
-
+    db = SessionLocal()
     branch_data = db.query(Data).filter(Data.branch == selected_branch).all()
     
     if not branch_data:
