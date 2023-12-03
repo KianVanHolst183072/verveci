@@ -171,6 +171,7 @@ function getBranchAverages(selectedBranch) {
                     .then(response => response.json())
                     .then(data => {
                         console.log(data);
+                        getBranchAverages(selectedBranch);
                         toFinalPage();
                     })
                     .catch(error => console.error(error));
