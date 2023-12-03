@@ -80,7 +80,7 @@ class Average(Base):
     __tablename__ = 'average'
 
     id = Column(Integer, primary_key=True, index=True)
-
+    branch = Column(String(1))
     AvgA = Column(Float)
     AvgB = Column(Float)
     AvgC = Column(Float)
