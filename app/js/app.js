@@ -127,7 +127,7 @@ function getBranchAverages(selectedBranch) {
             const average = Math.round(sum / 6);
             brancharray[0] = average;
         
-            console.log('Updated brancharray:', brancharray);
+            updateScorebars()
         })
         .catch((error) => {
             // Handle errors here
@@ -228,8 +228,7 @@ function toFinalPage(){
         progressMade.style.maxWidth = `100%`;
         console.log(FormData)
         $(".page.active").show();
-        $(".page:not(.active)").hide();
-        updateScorebars();
+        $(".page:not(.active)").hide();;
 }
 
 document.getElementById('downloadBtn').addEventListener('click', function () {
