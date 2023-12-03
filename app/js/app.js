@@ -56,12 +56,13 @@ button.addEventListener("click", async () => {
 document.getElementById('selectChange').addEventListener('change', function() {
     const selectedOption = this.value; // Get the value of the selected option
     const key = this.name; // Use the name attribute of the select as the key
-    selectedAnswers[key] = selectedOption; // Update the selectedAnswers object
+    selectedAnswers['change'] = selectedOption; // Update the selectedAnswers object
 });
 
 document.getElementById('selectBranch').addEventListener('change', function() {
     const selectedOption = this.value; 
     selectedBranch = selectedOption; 
+    selectedAnswers['branch'] = selectedOption
     console.log(selectedBranch); // Note the corrected variable name
 });
 
