@@ -40,7 +40,7 @@ button.addEventListener("click", async () => {
 
 // 'HOME' PAGE WEERGEVEN
 
-    let currentPage = 11; // set current page to 0 (page1)
+    let currentPage = 0; // set current page to 0 (page1)
 
     function getDate() {
         var today = new Date();
