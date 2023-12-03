@@ -9,7 +9,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import func
 from datetime import datetime
 from fastapi import FastAPI, Query
-from models import Data, Average
+from models import Data
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
