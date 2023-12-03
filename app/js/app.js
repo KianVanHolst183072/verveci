@@ -6,7 +6,7 @@ button.addEventListener("click", async () => {
   const html = await response.text();
   document.body.innerHTML = html;
 }); */
-    brancharray = []
+    brancharray = [0,0,0,0,0,0]
     NLarray = []
     var questions = $(".question").length;
     var totalp1 = 0;
